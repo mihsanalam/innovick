@@ -52,8 +52,8 @@
   --app-font-sans: var(--font-body);
   --app-font-mono: 'Space Mono', monospace;
   --radius: 1rem;
-  --shadow-soft: 0 18px 50px rgba(21, 26, 53, .10);
-  --shadow-lift: 0 24px 60px rgba(21, 26, 53, .16);
+  --shadow-soft: 0 18px 50px rgba(90, 49, 121, .10);
+  --shadow-lift: 0 24px 60px rgba(83, 37, 117, .16);
 }
 
 .dark {
@@ -79,7 +79,7 @@
   * { @apply border-border; }
   html { scroll-behavior: smooth; }
   body { @apply font-sans antialiased bg-background text-foreground; margin: 0; }
-  ::selection { background: #dcb5ea; color: #151a35; }
+  ::selection { background: #dcb5ea; color: #2b1b3d; }
 }
 
 .font-display { font-family: var(--font-heading); }
@@ -88,33 +88,71 @@
    container — plain `overflow: hidden` would break every position:sticky below. */
 .page-shell { overflow-x: clip; }
 .container-wide { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+.eyebrow { letter-spacing: .16em; font-size: .68rem; font-weight: 700; color: #8e31b5; }
 .gradient-text { background: linear-gradient(115deg, #8e31b5, #c27cdf); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .gradient-bg { background: linear-gradient(115deg, #8e31b5, #b565d6); }
-.soft-shadow { box-shadow: 0 18px 50px rgba(21, 26, 53, .10), 0 4px 14px rgba(21, 26, 53, .05); }
+.soft-shadow { box-shadow: 0 18px 50px rgba(90, 49, 121, .10), 0 4px 14px rgba(142,49,181,.05); }
 .card-lift { transition: transform .35s ease, box-shadow .35s ease; }
 .card-lift:hover { transform: translateY(-7px); box-shadow: var(--shadow-lift); }
-/* Film grain over a whole section. The overlay sits on top of everything —
-   it's pointer-events:none at 4.5% opacity, so nothing underneath is affected.
-   Note: do NOT position .noise > * here. It would out-specify Tailwind's
-   `absolute` utility (same specificity, later in the sheet) and drop every
-   absolutely-positioned decoration back into the flow. */
+.grid-lines { background-image: linear-gradient(rgba(142,49,181,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(142,49,181,.07) 1px, transparent 1px); background-size: 32px 32px; }
 .noise { position: relative; isolation: isolate; }
-.noise::after { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: .045; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E"); }
+.noise::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .045; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E"); }
+.noise > * { position: relative; z-index: 1; }
 .hero-orb { animation: drift 12s ease-in-out infinite alternate; will-change: transform; }
 @keyframes drift { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(20px, 28px, 0) scale(1.06); } }
 .marquee { animation: marquee 26s linear infinite; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .line-chart { background: linear-gradient(135deg, rgba(255,255,255,.13), rgba(255,255,255,.03)); }
-.phone { box-shadow: 0 28px 50px rgba(13, 17, 40, .26), inset 0 0 0 1px rgba(255,255,255,.45); }
-.phone-screen { background: #f7f8fc; }
+.phone { box-shadow: 0 28px 50px rgba(39, 14, 55, .23), inset 0 0 0 1px rgba(255,255,255,.45); }
+.phone-screen { background: #fbf8ff; }
+.footer-glow { background: radial-gradient(circle at 50% 0%, rgba(100,30,160,.35), transparent 60%); }
+/* Section transition softeners — lavender to white edges */
+.section-fade-bottom { mask-image: linear-gradient(to bottom, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); }
+.section-blend-top { position: relative; }
+.section-blend-top::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 48px; background: linear-gradient(to bottom, #fbf8ff, transparent); pointer-events: none; z-index: 1; }
 .portfolio-visual, .team-photo { transform: translateZ(0); }
-.portfolio-visual { box-shadow: inset 0 -30px 50px rgba(21,26,53,.10); }
+.portfolio-visual { box-shadow: inset 0 -30px 50px rgba(43,27,61,.10); }
 .browser-window { transform-origin: center bottom; }
 .team-photo:first-child { margin-left: -8px; margin-right: 8px; }
 .team-photo:nth-child(2) { margin-top: 18px; }
 .team-photo:nth-child(3) { margin-top: -12px; }
 
-/* Hero status rail — the "accepting clients" dot */
+/* Growth Room — the draggable levers */
+.lever {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .14);
+  outline: none;
+  cursor: pointer;
+}
+.lever::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, .1), 0 4px 12px rgba(0, 0, 0, .5);
+  cursor: grab;
+  transition: box-shadow .2s ease;
+}
+.lever::-webkit-slider-thumb:active { cursor: grabbing; box-shadow: 0 0 0 9px rgba(255, 255, 255, .14), 0 4px 12px rgba(0, 0, 0, .5); }
+.lever::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, .1), 0 4px 12px rgba(0, 0, 0, .5);
+  cursor: grab;
+}
+.lever:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 9px rgba(194, 124, 223, .35); }
+
 .pulse-dot { animation: pulseDot 1.9s ease-in-out infinite; }
 @keyframes pulseDot {
   0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74, 222, 128, .45); }
@@ -129,6 +167,6 @@
 }
 @media (max-width: 767px) {
   .container-wide { width: min(100% - 32px, 600px); }
-  .hero-title { font-size: clamp(2.5rem, 11.5vw, 4rem); line-height: .98; }
+  .hero-title { font-size: clamp(2.4rem, 11vw, 3.6rem); line-height: 1; }
   .team-photo:first-child, .team-photo:nth-child(2), .team-photo:nth-child(3) { margin: 0; }
 }
