@@ -39,7 +39,7 @@ export function Team() {
       <div className="container-wide relative">
         {/* Asymmetric header: heading left, blurb bottom-aligned to its right. */}
         <Reveal>
-          <div className="grid gap-8 md:grid-cols-[1.15fr_.85fr] md:items-end">
+          <div className="grid gap-8 md:grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)] md:items-end">
             <div>
               <span className="font-mono-custom text-[10px] font-bold tracking-[.18em] text-[#c27cdf]">INSIDE INNOVICK</span>
               <h2 className="mt-5 font-display text-[clamp(2.2rem,5.2vw,4.2rem)] font-extrabold leading-[.98] tracking-[-.07em] text-white">

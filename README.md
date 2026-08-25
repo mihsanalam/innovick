@@ -88,10 +88,76 @@ to dark — if you want it sooner, giving `Capabilities` the `#0d1128` treatment
 the natural place. `Team` runs dark too, right after `Diagnose`, and shows the
 wide studio shot as a single framed photo rather than a grid.
 
-The hero is white and completely static — no entrance animation, no ticker. The
-one purple button is the only saturated thing above the fold, which is what makes
-it read as the single next step. The glass header sits over it: translucent white
-plus a heavy backdrop blur, going from 65% to 80% opaque once you scroll past 48px.
+The hero is white, with no background image and no ticker. The one purple button
+is the only saturated thing above the fold, which is what makes it read as the
+single next step. The glass header sits over it: translucent white plus a heavy
+backdrop blur, going from 65% to 80% opaque once you scroll past 48px.
+
+On load the headline arrives a word at a time, each one tilting up out of the page,
+and everything below it follows as one group — about 1.6s end to end. The words are
+split in the JSX (`headlineWords` at the top of `Hero.tsx`) rather than by a text
+plugin, and each is an `inline-block`, so they wrap like normal text and nothing
+needs re-measuring when the line breaks differently at another width. The serif
+accent is just the last word in the stagger, so it lands on its own beat.
+
+Both purple buttons — the one in the header and the one in `Contact` — are
+`variant="brand"`, so the same colour opens and closes the page.
+
+### Animation
+
+Two systems, deliberately split:
+
+- **`Reveal`** (Framer Motion) — the plain fade-and-rise used on headings and
+  blocks of copy. Wrap anything in it and it plays once on scroll-in.
+- **GSAP + ScrollTrigger** — anything that staggers, scrubs, or pins. Registered
+  once in `src/lib/gsap.ts`; always import `gsap` from there, never from the
+  package, so the plugin is guaranteed to be registered first.
+
+Every section with GSAP:
+
+| Section | What it does |
+| --- | --- |
+| `Hero` | Headline tilts up a word at a time on load, rest follows |
+| `Stats` | Figures count up from zero |
+| `Services` | Pins, then slides six cards into a stack |
+| `Founder` | Portrait rises; proof figures stagger in |
+| `Capabilities` | Sticky rail highlights the panel you're level with |
+| `Work` | Tiles ripple in on the diagonal (`stagger.grid`) |
+| `Diagnose` | Symptoms slide in from the left |
+| `Team` | Photo parallaxes inside its frame |
+| `VideoReviews` | Cards rise in pairs |
+| `FAQ` | Rows drop in; divider lines draw out from the left |
+| `Contact` | Rows deal in from the right, icons pop behind them, glow drifts |
+
+Two rules when adding one:
+
+1. **Start with `if (prefersReducedMotion()) return;`** — imported from
+   `src/lib/gsap.ts`. The `@media (prefers-reduced-motion)` block in `index.css`
+   only stops CSS animation; it has no effect on GSAP.
+2. **Use `fromTo`, never a bare `from`.** With `fromTo`, skipping the tween (for
+   reduced motion, or if a trigger never fires) leaves the element exactly as the
+   JSX rendered it. A bare `from` would leave it stuck invisible.
+
+### Responsive
+
+Verified with no horizontal overflow at 320, 375, 768, 900, 1024, and 1440px.
+
+Two things keep it that way, and both are easy to undo by accident:
+
+- **Every multi-column grid uses `minmax(0, Nfr)`, not `Nfr`.** A bare `fr` track
+  has an `auto` minimum, so one wide child can force the track past its share and
+  drag its siblings out of the container with it. Add a column, and it needs the
+  same treatment.
+- **Grid and flex children that hold text carry `min-w-0`.** Same reason: without
+  it a child refuses to shrink below its longest unbreakable line.
+
+Avoid `truncate` on anything inside a grid — it implies `white-space: nowrap`,
+which makes the element's minimum width the *entire* string, which is exactly what
+blows a track out. Wrap with `break-words` instead.
+
+The footer switches from stacked to a single row at `lg`, not `md`: eight links
+plus the logo and the copyright need about 900px, and forcing them into a row at
+768px wrapped the nav onto two lines and made the footer *taller* than stacking it.
 
 ### The service stack (hand-rolled GSAP)
 
@@ -130,8 +196,11 @@ generated `<ServiceArt />` tile cluster on that card.
 ### The work gallery — adding your screenshots
 
 `Proven output` is a plain grid of tiles, one per screenshot: 2-up on phones,
-4-up from `md`, wrapping to as many rows as you have work. No animation beyond the
-scroll-in fade, because the screenshots are the content.
+4-up from `md`, wrapping to as many rows as you have work. The tiles ripple in on
+the diagonal — GSAP's `stagger.grid` measures each tile's distance from the
+top-left corner, and the column count is read off the rendered element, so the
+ripple adapts when the grid drops to 2-up. Nothing else moves; the screenshots are
+the content.
 
 It ships filled with **eight Unsplash placeholder photos** so the section doesn't
 look empty. They're hotlinked from `images.unsplash.com` — fine while you're
@@ -190,24 +259,8 @@ image inside it instead of the gradient.
 It never runs on touch devices or for visitors who ask for reduced motion, and
 it re-checks both — plugging in a mouse starts it without a reload.
 
-## Before you go live
-
-- [ ] Save the founder portrait to `public/founder.jpg` (until then the frame
-      shows an initials placeholder — nothing breaks)
-- [ ] Replace the eight Unsplash placeholder photos in `src/data/work.ts`: drop
-      your screenshots into `public/work/`, point each tile's `image` at them, and
-      remove the `fit: 'cover'` line so they're contained rather than cropped
-- [ ] Real email, phone, and WhatsApp number in `src/data/site.ts`
-- [ ] Real social profile URLs in `src/data/site.ts`
-- [ ] Video embed URLs in `src/data/reviews.ts` (empty `videoUrl` shows a
-      "coming soon" state on press)
-- [ ] Confirm the stat figures in `src/data/proof.ts` and `src/data/founder.ts`,
-      and the eight results in `src/data/work.ts`
-
-Every one of these is marked with a `// TODO:` comment in the source.
-
 ## Backups
 
 `src/App.tsx.bak` and `src/index.css.bak` are snapshots from before the
-multi-file refactor. This project isn't in git, so they're the only way back to
-the previous version — delete them once you're happy with the current site.
+multi-file refactor. They're untracked, so git can't bring them back once they're
+gone — delete them once you're happy with the current site.

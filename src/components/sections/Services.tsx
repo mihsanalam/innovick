@@ -166,7 +166,7 @@ export function Services() {
                 className="services-card flex items-center rounded-[2.25rem] border border-[#e6e8f0] bg-white p-7 shadow-[0_40px_90px_-40px_rgba(21,26,53,.3)] md:p-11 [&:not(:first-child)]:mt-6"
                 data-testid={`card-service-${i}`}
               >
-                <div className="grid w-full items-center gap-9 lg:grid-cols-[1.12fr_.88fr] lg:gap-14">
+                <div className="grid w-full items-center gap-9 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,.88fr)] lg:gap-14">
                   <div>
                     <span className="font-mono-custom text-[11px] font-bold tracking-[.16em] text-[#a6abbd]">
                       {String(i + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}

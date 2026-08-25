@@ -1,3 +1,6 @@
+import { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import { gsap, prefersReducedMotion } from '@/lib/gsap';
 import { Reveal } from '@/components/common/Reveal';
 import { workShowcase, type WorkTile } from '@/data/work';
 import { serifAccent } from '@/lib/theme';
@@ -15,8 +18,39 @@ import { serifAccent } from '@/lib/theme';
  * results mock, so the section looks complete before anything's uploaded.
  */
 export function Work() {
+  const workRef = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    if (prefersReducedMotion()) return;
+
+    /*
+      A diagonal ripple, not a row of fades.
+
+      `stagger.grid` tells GSAP the tiles are laid out 4-across, and `from: 'start'`
+      measures each tile's distance from the top-left corner — so the delay travels
+      on the diagonal and the wall assembles corner-outward. The columns count has
+      to match the CSS (`md:grid-cols-4`), so it's read off the rendered element
+      rather than hardcoded: at phone width the grid is 2-up and the ripple adapts.
+
+      `amount` rather than `each` keeps the whole sweep at 0.5s no matter how many
+      tiles are in the data file — add four more and it stays this quick.
+    */
+    const grid = workRef.current?.querySelector<HTMLElement>('.work-grid');
+    if (!grid) return;
+    const columns = getComputedStyle(grid).gridTemplateColumns.split(' ').length;
+
+    gsap.fromTo('.work-tile',
+      { y: 46, scale: 0.94, opacity: 0 },
+      {
+        y: 0, scale: 1, opacity: 1,
+        duration: 0.75, ease: 'power3.out', clearProps: 'all',
+        stagger: { grid: [Math.ceil(workShowcase.length / columns), columns], from: 'start', amount: 0.5 },
+        scrollTrigger: { trigger: grid, start: 'top 85%', once: true },
+      });
+  }, { scope: workRef });
+
   return (
-    <section id="work" className="bg-[#f5f6fa] py-24 md:py-32">
+    <section ref={workRef} id="work" className="bg-[#f5f6fa] py-24 md:py-32">
       <div className="container-wide">
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
@@ -36,12 +70,12 @@ export function Work() {
         </Reveal>
 
         {/* 2-up on phones, 4-up from md. Add or remove tiles in the data file;
-            the grid just wraps. */}
-        <div className="mt-14 grid grid-cols-2 gap-4 md:mt-16 md:grid-cols-4 md:gap-5">
-          {workShowcase.map((tile, i) => (
-            <Reveal key={tile.alt} delay={(i % 4) * 0.06}>
+            the grid just wraps and the stagger re-reads the column count. */}
+        <div className="work-grid mt-14 grid grid-cols-2 gap-4 md:mt-16 md:grid-cols-4 md:gap-5">
+          {workShowcase.map(tile => (
+            <div key={tile.alt} className="work-tile">
               <WorkCard tile={tile} />
-            </Reveal>
+            </div>
           ))}
         </div>
       </div>
