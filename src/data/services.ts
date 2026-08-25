@@ -1,13 +1,62 @@
+import type { LucideIcon } from 'lucide-react';
 import { Code2, Palette, Search, Settings2, Target, Users } from 'lucide-react';
 
-/** The six-card services grid. */
-export const services = [
-  { icon: Target, title: 'Strategic Marketing', desc: 'Data-led campaign strategy across Meta and Google Ads that turns spend into predictable profit.', tags: ['Facebook Ads', 'Google Ads'] },
-  { icon: Palette, title: 'Creative Design', desc: 'Scroll-stopping visuals and video ad creatives built to convert, not just look good.', tags: ['Ad Creatives', 'Branding'] },
-  { icon: Users, title: 'Social Media Management', desc: 'Full-service content, community, and posting management so your brand stays consistently present.', tags: ['Content', 'Community'] },
-  { icon: Code2, title: 'Web Development', desc: 'Fast, conversion-focused websites and landing pages built in React and Next.js.', tags: ['Next.js', 'Landing Pages'] },
-  { icon: Search, title: 'SEO', desc: 'Technical and content SEO that compounds your organic traffic month over month.', tags: ['Technical SEO', 'Content SEO'] },
-  { icon: Settings2, title: 'Automation Services', desc: 'CRM, lead capture, and follow-up automation that runs while you sleep.', tags: ['CRM', 'Automation'] },
+/**
+ * The six services, dealt out as a stack of full-width cards.
+ *
+ * Each card's title renders with its **last word** in serif italic, so phrase the
+ * title with the word you want emphasised last ("Strategic Marketing" →
+ * "Strategic *Marketing*"). `tags` fill the pill rows — 4–6 reads best.
+ *
+ * `image` is optional: drop a render into `public/services/` and point to it
+ * (`image: '/services/seo.png'`) to replace the generated <ServiceArt /> tile
+ * cluster on that card.
+ */
+export type Service = {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+  tags: string[];
+  image?: string;
+};
+
+export const services: Service[] = [
+  {
+    icon: Target,
+    title: 'Strategic Marketing',
+    desc: 'Data-led campaign strategy across Meta and Google Ads that turns ad spend into predictable, trackable profit — not guesswork.',
+    tags: ['Facebook Ads', 'Google Ads', 'Funnel Strategy', 'Retargeting', 'A/B Testing'],
+  },
+  {
+    icon: Palette,
+    title: 'Creative Design',
+    desc: 'Scroll-stopping visuals and video ad creatives built to convert, engineered around your brand — not a stock template.',
+    tags: ['Ad Creatives', 'Branding', 'Motion', 'Short-form Video', 'Design Systems'],
+  },
+  {
+    icon: Users,
+    title: 'Social Media Management',
+    desc: 'Full-service content, community, and posting management so your brand stays consistently present where your buyers already are.',
+    tags: ['Content', 'Community', 'Calendar', 'Copywriting', 'Analytics'],
+  },
+  {
+    icon: Code2,
+    title: 'Web Development',
+    desc: 'Fast, conversion-focused websites and landing pages built in React and Next.js, tuned around your customer journey.',
+    tags: ['Next.js', 'Landing Pages', 'React', 'Performance', 'Analytics'],
+  },
+  {
+    icon: Search,
+    title: 'Search SEO',
+    desc: 'Technical and content SEO that compounds your organic traffic month over month, long after the ad budget stops.',
+    tags: ['Technical SEO', 'Content SEO', 'Audits', 'Keyword Intent', 'Schema'],
+  },
+  {
+    icon: Settings2,
+    title: 'Automation Services',
+    desc: 'CRM, lead capture, and follow-up automation that keeps working while you sleep — every lead answered, nothing dropped.',
+    tags: ['CRM', 'Automation', 'Lead Capture', 'Email Flows', 'Integrations'],
+  },
 ];
 
 /**

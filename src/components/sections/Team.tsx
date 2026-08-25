@@ -2,71 +2,105 @@ import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
 import { Reveal } from '@/components/common/Reveal';
-import { teamPills, teamShots } from '@/data/team';
-import { serifAccent } from '@/lib/theme';
+import { teamPills, teamImage } from '@/data/team';
+import { darkGrid, serifAccent } from '@/lib/theme';
 
+/**
+ * The team, as one wide shot rather than a grid of headshots.
+ *
+ * Dark band. The photo sits in a single cinematic frame with printer's crop
+ * marks in the corners, a mono location chip, and a frosted caption plate that
+ * echoes the founder name plate — an editorial "contact sheet" treatment rather
+ * than the usual gallery. The image drifts on a scrubbed parallax as the section
+ * passes; the frame clips it, so the movement never shows an edge.
+ */
 export function Team() {
   const teamRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
-    // Each photo drifts at its own rate as the section passes — a gentle parallax.
-    const speeds = [-40, -20, -60];
-    gsap.utils.toArray<HTMLElement>('.team-photo').forEach((photo, i) => {
-      gsap.to(photo, {
-        y: speeds[i], ease: 'none',
-        scrollTrigger: { trigger: teamRef.current, start: 'top bottom', end: 'bottom top', scrub: true },
-      });
-    });
+    gsap.fromTo('.team-parallax',
+      { yPercent: -8 },
+      {
+        yPercent: 8, ease: 'none',
+        scrollTrigger: { trigger: '.team-frame', start: 'top bottom', end: 'bottom top', scrub: true },
+      }
+    );
   }, { scope: teamRef });
 
   return (
-    <section ref={teamRef} id="team" className="bg-white py-24 md:py-32">
-      <div className="container-wide">
+    <section
+      ref={teamRef}
+      id="team"
+      className="relative overflow-hidden bg-[#0d1128] py-24 text-white md:py-32"
+    >
+      <div className="pointer-events-none absolute -left-32 top-24 h-[420px] w-[420px] rounded-full bg-[#8e31b5]/16 blur-[130px]" />
+      <div className="pointer-events-none absolute inset-0 opacity-[.045]" style={darkGrid} />
+
+      <div className="container-wide relative">
+        {/* Asymmetric header: heading left, blurb bottom-aligned to its right. */}
         <Reveal>
-          <span className="font-mono-custom text-[10px] font-bold tracking-[.18em] text-[#8e31b5]">INSIDE INNOVICK</span>
-          <h2 className="mt-5 max-w-3xl font-display text-[clamp(2.2rem,5.2vw,4.2rem)] font-extrabold tracking-[-.07em] text-[#151a35]">
-            The team behind<br />
-            <span className="font-normal italic tracking-[-.02em]" style={{ fontFamily: serifAccent }}>the work.</span>
-          </h2>
-          <p className="mt-6 max-w-xl text-[17px] leading-8 text-[#5c6178]">
-            One team across marketing, design, and development — close enough to move quickly,
-            experienced enough to know what matters.
-          </p>
-          <div className="team-pills mt-8 flex max-w-3xl flex-wrap gap-2">
+          <div className="grid gap-8 md:grid-cols-[1.15fr_.85fr] md:items-end">
+            <div>
+              <span className="font-mono-custom text-[10px] font-bold tracking-[.18em] text-[#c27cdf]">INSIDE INNOVICK</span>
+              <h2 className="mt-5 font-display text-[clamp(2.2rem,5.2vw,4.2rem)] font-extrabold leading-[.98] tracking-[-.07em] text-white">
+                The team behind<br />
+                <span className="font-normal italic tracking-[-.02em]" style={{ fontFamily: serifAccent }}>the work.</span>
+              </h2>
+            </div>
+            <p className="max-w-md text-[16px] leading-8 text-white/55 md:pb-2">
+              One team across marketing, design, and development — close enough to move quickly,
+              experienced enough to know what matters.
+            </p>
+          </div>
+        </Reveal>
+
+        {/* The wide shot, framed. */}
+        <Reveal delay={0.1}>
+          <figure className="team-frame relative mt-14 h-[440px] overflow-hidden rounded-[2rem] border border-white/10 shadow-[0_50px_130px_-50px_rgba(0,0,0,.85)] md:h-[600px]">
+            {/* Oversized wrapper so the parallax drift never reveals an edge. */}
+            <div className="team-parallax absolute inset-x-0 -top-[12%] h-[124%] will-change-transform">
+              <img
+                src={teamImage.src}
+                alt={teamImage.alt}
+                width="2000" height="1120" loading="lazy" decoding="async"
+                className="h-full w-full object-cover"
+              />
+            </div>
+
+            {/* Scrim — anchors the caption and blends the base into the section. */}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0d1128] via-[#0d1128]/15 to-[#0d1128]/45" />
+
+            {/* Crop marks — the editorial tell. */}
+            <span aria-hidden="true" className="pointer-events-none absolute left-4 top-4 h-6 w-6 rounded-tl-md border-l-2 border-t-2 border-white/25 md:left-6 md:top-6" />
+            <span aria-hidden="true" className="pointer-events-none absolute right-4 top-4 h-6 w-6 rounded-tr-md border-r-2 border-t-2 border-white/25 md:right-6 md:top-6" />
+            <span aria-hidden="true" className="pointer-events-none absolute bottom-4 left-4 h-6 w-6 rounded-bl-md border-b-2 border-l-2 border-white/25 md:bottom-6 md:left-6" />
+            <span aria-hidden="true" className="pointer-events-none absolute bottom-4 right-4 h-6 w-6 rounded-br-md border-b-2 border-r-2 border-white/25 md:bottom-6 md:right-6" />
+
+            {/* Location chip, top-right. */}
+            <span className="absolute right-8 top-8 rounded-full border border-white/15 bg-[#0d1128]/60 px-3.5 py-1.5 font-mono-custom text-[10px] font-bold tracking-[.16em] text-white/70 backdrop-blur-md md:right-10 md:top-10">
+              {teamImage.location}
+            </span>
+
+            {/* Caption plate, bottom-left — mirrors the founder name plate. */}
+            <figcaption className="absolute inset-x-8 bottom-8 max-w-md rounded-2xl border border-white/15 bg-[#0d1128]/70 px-6 py-4 backdrop-blur-xl backdrop-saturate-150 md:inset-x-10 md:bottom-10">
+              <p className="font-mono-custom text-[10px] font-bold uppercase tracking-[.18em] text-[#c27cdf]">{teamImage.kicker}</p>
+              <p className="mt-1.5 font-display text-[20px] font-extrabold leading-tight tracking-[-.04em] text-white md:text-[24px]">
+                {teamImage.caption}
+              </p>
+            </figcaption>
+          </figure>
+        </Reveal>
+
+        {/* Culture tags. */}
+        <Reveal delay={0.15}>
+          <div className="mt-8 flex flex-wrap gap-2">
             {teamPills.map(pill => (
-              <span key={pill} className="rounded-full border border-[#e6e8f0] bg-[#f8f9fc] px-4 py-2 text-xs font-semibold text-[#5c6178]">
+              <span key={pill} className="rounded-full border border-white/12 bg-white/[.04] px-4 py-2 text-xs font-semibold text-white/60">
                 {pill}
               </span>
             ))}
           </div>
         </Reveal>
-
-        <div className="team-gallery mt-14 grid gap-4 md:grid-cols-[1.1fr_.9fr_.9fr]">
-          {teamShots.map((shot, i) => (
-            <Reveal key={shot.src} className={i === 0 ? 'h-full' : undefined} delay={0.05 + i * 0.05}>
-              <div className="team-photo relative h-80 overflow-hidden rounded-3xl bg-[#151a35] shadow-[0_20px_40px_-10px_rgba(21,26,53,.22)]">
-                <img
-                  width="1000" height="640" loading="lazy" decoding="async"
-                  src={shot.src} alt={shot.alt}
-                  className="h-full w-full object-cover opacity-95"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d1128]/80 via-transparent to-transparent" />
-                {shot.caption ? (
-                  <div className="absolute bottom-6 left-7">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-white/70">{shot.kicker}</p>
-                    <p className="mt-2 max-w-xs font-display text-2xl font-extrabold leading-tight tracking-[-.06em] text-white">
-                      {shot.caption}
-                    </p>
-                  </div>
-                ) : (
-                  <span className="absolute bottom-5 left-5 font-mono-custom text-[10px] font-bold tracking-[.12em] text-white/75">
-                    {shot.chip}
-                  </span>
-                )}
-              </div>
-            </Reveal>
-          ))}
-        </div>
       </div>
     </section>
   );

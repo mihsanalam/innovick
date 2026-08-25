@@ -2,7 +2,17 @@
   "permissions": {
     "allow": [
       "Bash(awk 'NR>=1757 && NR<=1850' src/App.tsx)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(node -p \"require\\('./node_modules/lenis/package.json'\\).version\")",
+      "Bash(grep -o 'bg-white\\\\\\\\/8[05]\\\\|bg-white\\\\\\\\/65\\\\|shadow-\\\\[0_8px_30px_rgba\\(21,26,53,\\\\.06\\)\\\\]' dist/assets/*.css)",
+      "Bash(node -e \"const l=require\\('lucide-react'\\);['CircleCheck','CheckCircle2','BadgeCheck','Quote'].forEach\\(n=>console.log\\(n, typeof l[n]\\)\\)\")",
+      "Bash(npm uninstall *)",
+      "Bash(pwd -W)",
+      "Bash(cygpath -w /tmp/innovick-imgcheck)",
+      "Bash(curl -s -o /tmp/ar.jpg -w \"%{http_code} %{size_download}\\\\n\" --max-time 25 \"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=750&q=72&auto=format&fit=crop\")",
+      "Bash(node -e ' *)",
+      "Bash(cp /tmp/ar.jpg \"/c/Users/Mahfuz PC/AppData/Local/Temp/innovick-imgcheck/ar.jpg\" && echo copied)"
     ]
   }
 }

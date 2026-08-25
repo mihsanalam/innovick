@@ -91,8 +91,6 @@
 .gradient-text { background: linear-gradient(115deg, #8e31b5, #c27cdf); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .gradient-bg { background: linear-gradient(115deg, #8e31b5, #b565d6); }
 .soft-shadow { box-shadow: 0 18px 50px rgba(21, 26, 53, .10), 0 4px 14px rgba(21, 26, 53, .05); }
-.card-lift { transition: transform .35s ease, box-shadow .35s ease; }
-.card-lift:hover { transform: translateY(-7px); box-shadow: var(--shadow-lift); }
 /* Film grain over a whole section. The overlay sits on top of everything —
    it's pointer-events:none at 4.5% opacity, so nothing underneath is affected.
    Note: do NOT position .noise > * here. It would out-specify Tailwind's
@@ -100,35 +98,14 @@
    absolutely-positioned decoration back into the flow. */
 .noise { position: relative; isolation: isolate; }
 .noise::after { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: .045; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E"); }
-.hero-orb { animation: drift 12s ease-in-out infinite alternate; will-change: transform; }
-@keyframes drift { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(20px, 28px, 0) scale(1.06); } }
-.marquee { animation: marquee 26s linear infinite; }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .line-chart { background: linear-gradient(135deg, rgba(255,255,255,.13), rgba(255,255,255,.03)); }
 .phone { box-shadow: 0 28px 50px rgba(13, 17, 40, .26), inset 0 0 0 1px rgba(255,255,255,.45); }
 .phone-screen { background: #f7f8fc; }
-.portfolio-visual, .team-photo { transform: translateZ(0); }
-.portfolio-visual { box-shadow: inset 0 -30px 50px rgba(21,26,53,.10); }
-.browser-window { transform-origin: center bottom; }
-.team-photo:first-child { margin-left: -8px; margin-right: 8px; }
-.team-photo:nth-child(2) { margin-top: 18px; }
-.team-photo:nth-child(3) { margin-top: -12px; }
 
-/* Hero status rail — the "accepting clients" dot */
-.pulse-dot { animation: pulseDot 1.9s ease-in-out infinite; }
-@keyframes pulseDot {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74, 222, 128, .45); }
-  50% { opacity: .5; box-shadow: 0 0 0 5px rgba(74, 222, 128, 0); }
-}
-
-/* Stacked project cards — each sticks a little lower than the one before it */
-.stack-card { will-change: transform; }
-.stack-inner { transform-origin: center top; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 @media (max-width: 767px) {
   .container-wide { width: min(100% - 32px, 600px); }
   .hero-title { font-size: clamp(2.5rem, 11.5vw, 4rem); line-height: .98; }
-  .team-photo:first-child, .team-photo:nth-child(2), .team-photo:nth-child(3) { margin: 0; }
 }

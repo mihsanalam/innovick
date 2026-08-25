@@ -2,6 +2,7 @@
  * Everything a non-developer is most likely to want to change lives here:
  * contact details, nav labels, and the social links.
  */
+import { Instagram, Linkedin, Twitter, type LucideIcon } from 'lucide-react';
 
 // TODO: replace the placeholder email, phone, and WhatsApp number with the real ones.
 export const contact = {
@@ -31,8 +32,9 @@ export const footerLinks: [string, string][] = [
 ];
 
 // TODO: point these at the real Innovick profiles.
-export const socialLinks = [
-  { label: 'LinkedIn', href: 'https://linkedin.com' },
-  { label: 'Instagram', href: 'https://instagram.com' },
-  { label: 'Twitter', href: 'https://x.com' },
-] as const;
+// `icon` is a lucide-react component — swap it if you change the network.
+export const socialLinks: { label: string; href: string; icon: LucideIcon }[] = [
+  { label: 'LinkedIn', href: 'https://linkedin.com', icon: Linkedin },
+  { label: 'Instagram', href: 'https://instagram.com', icon: Instagram },
+  { label: 'Twitter', href: 'https://x.com', icon: Twitter },
+];
