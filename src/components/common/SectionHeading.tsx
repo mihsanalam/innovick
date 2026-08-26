@@ -1,4 +1,4 @@
-import { Reveal } from '@/components/common/Reveal';
+﻿import { Reveal } from '@/components/common/Reveal';
 import { serifAccent } from '@/lib/theme';
 
 /**
@@ -33,7 +33,7 @@ export function SectionHeading({
       <span className={`font-mono-custom text-[10px] font-bold tracking-[.18em] ${dark ? 'text-[#c27cdf]' : 'text-[#8e31b5]'}`}>
         {eyebrow}
       </span>
-      <h2 className={`mt-5 max-w-3xl font-display text-[clamp(2.1rem,5vw,4.2rem)] font-extrabold leading-[1.02] tracking-[-.065em] ${dark ? 'text-white' : 'text-[#151a35]'}`}>
+      <h2 className={`mt-5 max-w-3xl font-display text-[clamp(2.1rem,5vw,4.2rem)] font-semibold leading-[1.02] tracking-[-.065em] ${dark ? 'text-white' : 'text-[#151a35]'}`}>
         {lead}
         {accent && (
           <>

@@ -4,6 +4,7 @@ import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import Home from '@/pages/Home';
+import Contact from '@/pages/Contact';
 import NotFound from '@/pages/not-found';
 
 /**
@@ -20,6 +21,7 @@ function Router() {
     <ErrorBoundary resetKey={useLocation()[0]}>
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/contact" component={Contact} />
         <Route component={NotFound} />
       </Switch>
     </ErrorBoundary>

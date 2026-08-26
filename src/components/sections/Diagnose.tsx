@@ -42,7 +42,7 @@ export function Diagnose() {
           <span className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-3.5 py-1.5 font-mono-custom text-[10px] font-bold tracking-[.16em] text-white/55">
             <Stethoscope size={12} className="text-[#c27cdf]" /> THE DIAGNOSIS
           </span>
-          <h2 className="mt-6 max-w-3xl font-display text-[clamp(2.1rem,4.8vw,3.9rem)] font-extrabold leading-[1.02] tracking-[-.06em] text-white">
+          <h2 className="mt-6 max-w-3xl font-display text-[clamp(2.1rem,4.8vw,3.9rem)] font-semibold leading-[1.02] tracking-[-.06em] text-white">
             Tell us what’s broken.<br />
             <span className="font-normal italic tracking-[-.02em]" style={{ fontFamily: serifAccent }}>See what we’d do about it.</span>
           </h2>

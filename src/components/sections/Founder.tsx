@@ -21,7 +21,7 @@ function Portrait() {
       <div className="overflow-hidden rounded-[2rem] bg-[#eef0f6] shadow-[0_30px_80px_-30px_rgba(21,26,53,.35)]">
         {failed ? (
           <div className="grid aspect-[3/4] place-items-center bg-gradient-to-br from-[#eceef5] to-[#e4e0ef]">
-            <span className="font-display text-6xl font-extrabold tracking-[-.05em] text-[#151a35]/15">{initials}</span>
+            <span className="font-display text-6xl font-semibold tracking-[-.05em] text-[#151a35]/15">{initials}</span>
           </div>
         ) : (
           <img
@@ -37,7 +37,7 @@ function Portrait() {
       {/* Name plate — frosted glass so the photo reads through it. */}
       <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/60 bg-white/85 px-6 py-4 shadow-[0_18px_40px_-18px_rgba(21,26,53,.35)] backdrop-blur-xl backdrop-saturate-150">
         <p className="font-mono-custom text-[10px] font-bold uppercase tracking-[.16em] text-[#7a8199]">{founder.role}</p>
-        <p className="mt-1.5 font-display text-[19px] font-extrabold tracking-[-.035em] text-[#151a35]">{founder.name}</p>
+        <p className="mt-1.5 font-display text-[19px] font-semibold tracking-[-.035em] text-[#151a35]">{founder.name}</p>
       </div>
     </div>
   );
@@ -91,7 +91,7 @@ export function Founder() {
             <span className="inline-flex items-center rounded-full bg-[#fbf1fd] px-4 py-2 font-mono-custom text-[10px] font-bold uppercase tracking-[.18em] text-[#8e31b5]">
               {founder.eyebrow}
             </span>
-            <h2 className="mt-7 max-w-[24ch] font-display text-[clamp(1.9rem,3.4vw,3.1rem)] font-extrabold leading-[1.08] tracking-[-.045em] text-[#151a35]">
+            <h2 className="mt-7 max-w-[24ch] font-display text-[clamp(1.9rem,3.4vw,3.1rem)] font-semibold leading-[1.08] tracking-[-.045em] text-[#151a35]">
               {founder.headline}
             </h2>
             <p className="mt-6 max-w-[38rem] text-[17px] leading-8 text-[#7a8199] md:text-[18px]">{founder.blurb}</p>

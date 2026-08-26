@@ -20,6 +20,7 @@ export const navLinks: [string, string][] = [
   ['Diagnose', '#diagnose'],
   ['Reviews', '#reviews'],
   ['FAQs', '#faqs'],
+  ['Contact', '/contact'],
 ];
 
 /** Kept deliberately short — the footer is a sign-off, not a sitemap. */

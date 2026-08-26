@@ -75,7 +75,7 @@ export function Contact() {
       <div className="container-wide relative grid gap-12 py-20 md:grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)] md:gap-16 md:py-24">
         <Reveal className="min-w-0">
           <span className="font-mono-custom text-[10px] font-bold tracking-[.18em] text-white/40">NEXT STEP</span>
-          <h2 className="mt-5 max-w-xl font-display text-[clamp(2rem,4.2vw,3.3rem)] font-extrabold leading-[1.04] tracking-[-.06em] text-white">
+          <h2 className="mt-5 max-w-xl font-display text-[clamp(2rem,4.2vw,3.3rem)] font-semibold leading-[1.04] tracking-[-.06em] text-white">
             Tell us what isn’t working.{' '}
             <span className="font-normal italic tracking-[-.02em]" style={{ fontFamily: serifAccent }}>
               We’ll tell you what we’d do about it.

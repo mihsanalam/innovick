@@ -55,7 +55,7 @@ export function Work() {
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
             <span className="font-mono-custom text-[10px] font-bold tracking-[.18em] text-[#8e31b5]">PROVEN OUTPUT</span>
-            <h2 className="mt-5 font-display text-[clamp(2.2rem,5.4vw,4.2rem)] font-extrabold leading-[1.04] tracking-[-.07em] text-[#151a35]">
+            <h2 className="mt-5 font-display text-[clamp(2.2rem,5.4vw,4.2rem)] font-semibold leading-[1.04] tracking-[-.07em] text-[#151a35]">
               The receipts,{' '}
               <span className="text-[#9aa0b4]">not just the</span>{' '}
               <span className="font-normal italic tracking-[-.02em]" style={{ fontFamily: serifAccent }}>
@@ -145,7 +145,7 @@ function WorkCard({ tile }: { tile: WorkTile }) {
 
       {/* The one number, bottom-left. */}
       <p
-        className="absolute inset-x-5 bottom-5 z-10 font-display text-[15px] font-extrabold leading-tight tracking-[-.03em]"
+        className="absolute inset-x-5 bottom-5 z-10 font-display text-[15px] font-semibold leading-tight tracking-[-.03em]"
         style={{ color: strong }}
       >
         {tile.result}

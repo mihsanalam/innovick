@@ -137,7 +137,7 @@ export function Services() {
           <span className="inline-flex -rotate-2 rounded-md border border-dashed border-[#a85bc5] px-3 py-1 font-mono-custom text-[10px] font-bold text-[#8e31b5]">
             NEW / LET'S GROW
           </span>
-          <h2 className="mt-5 font-display text-[clamp(2.4rem,5.4vw,4.4rem)] font-extrabold tracking-[-.065em] text-[#151a35]">
+          <h2 className="mt-5 font-display text-[clamp(2.4rem,5.4vw,4.4rem)] font-semibold tracking-[-.065em] text-[#151a35]">
             Our <span className="font-normal italic tracking-[-.02em]" style={{ fontFamily: serifAccent }}>Services.</span>
           </h2>
           <p className="mt-5 max-w-xl text-[17px] leading-8 text-[#5c6178]">
@@ -172,7 +172,7 @@ export function Services() {
                       {String(i + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}
                     </span>
 
-                    <h3 className="mt-4 font-display text-[clamp(2rem,4.2vw,3.35rem)] font-extrabold leading-[1] tracking-[-.055em] text-[#151a35]">
+                    <h3 className="mt-4 font-display text-[clamp(2rem,4.2vw,3.35rem)] font-semibold leading-[1] tracking-[-.055em] text-[#151a35]">
                       {lead && <>{lead} </>}
                       <span className="font-normal italic tracking-[-.02em]" style={{ fontFamily: serifAccent }}>
                         {last}

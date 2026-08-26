@@ -42,7 +42,7 @@ export function Team() {
           <div className="grid gap-8 md:grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)] md:items-end">
             <div>
               <span className="font-mono-custom text-[10px] font-bold tracking-[.18em] text-[#c27cdf]">INSIDE INNOVICK</span>
-              <h2 className="mt-5 font-display text-[clamp(2.2rem,5.2vw,4.2rem)] font-extrabold leading-[.98] tracking-[-.07em] text-white">
+              <h2 className="mt-5 font-display text-[clamp(2.2rem,5.2vw,4.2rem)] font-semibold leading-[.98] tracking-[-.07em] text-white">
                 The team behind<br />
                 <span className="font-normal italic tracking-[-.02em]" style={{ fontFamily: serifAccent }}>the work.</span>
               </h2>
@@ -84,7 +84,7 @@ export function Team() {
             {/* Caption plate, bottom-left — mirrors the founder name plate. */}
             <figcaption className="absolute inset-x-8 bottom-8 max-w-md rounded-2xl border border-white/15 bg-[#0d1128]/70 px-6 py-4 backdrop-blur-xl backdrop-saturate-150 md:inset-x-10 md:bottom-10">
               <p className="font-mono-custom text-[10px] font-bold uppercase tracking-[.18em] text-[#c27cdf]">{teamImage.kicker}</p>
-              <p className="mt-1.5 font-display text-[20px] font-extrabold leading-tight tracking-[-.04em] text-white md:text-[24px]">
+              <p className="mt-1.5 font-display text-[20px] font-semibold leading-tight tracking-[-.04em] text-white md:text-[24px]">
                 {teamImage.caption}
               </p>
             </figcaption>

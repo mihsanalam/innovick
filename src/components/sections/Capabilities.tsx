@@ -47,7 +47,7 @@ export function Capabilities() {
       <div className="container-wide">
         <Reveal>
           <span className="font-mono-custom text-[10px] font-bold tracking-[.18em] text-[#8e31b5]">WHAT WE RUN FOR YOU</span>
-          <h2 className="mt-5 max-w-3xl font-display text-[clamp(2.2rem,5.2vw,4.2rem)] font-extrabold leading-[1.02] tracking-[-.07em] text-[#151a35]">
+          <h2 className="mt-5 max-w-3xl font-display text-[clamp(2.2rem,5.2vw,4.2rem)] font-semibold leading-[1.02] tracking-[-.07em] text-[#151a35]">
             Four disciplines,<br />
             <span className="font-normal italic tracking-[-.02em]" style={{ fontFamily: serifAccent }}>one operating system.</span>
           </h2>
@@ -66,11 +66,11 @@ export function Capabilities() {
                       className="block w-full py-4 text-left"
                       data-testid={`button-capability-${i}`}
                     >
-                      <span className={`font-display text-2xl font-extrabold tracking-[-.05em] transition-colors duration-500 ${open ? 'text-[#151a35]' : 'text-[#b3b7c6]'}`}>
+                      <span className={`font-display text-2xl font-semibold tracking-[-.05em] transition-colors duration-500 ${open ? 'text-[#151a35]' : 'text-[#b3b7c6]'}`}>
                         {item.title}
                       </span>
                     </button>
-                    {/* 0fr → 1fr gives a height-auto transition without measuring anything in JS. */}
+                    {/* 0fr â†’ 1fr gives a height-auto transition without measuring anything in JS. */}
                     <div className={`grid transition-all duration-500 ease-out ${open ? 'grid-rows-[1fr] pb-7 opacity-100' : 'grid-rows-[0fr] pb-0 opacity-0'}`}>
                       <div className="overflow-hidden">
                         <p className="max-w-sm text-sm leading-7 text-[#5c6178]">{item.blurb}</p>
@@ -99,7 +99,7 @@ export function Capabilities() {
               <div key={item.title} id={`cap-${i}`} className="cap-panel pb-10 lg:pb-24">
                 <div className="mb-6 lg:hidden">
                   <span className="font-mono-custom text-xs font-bold text-[#8e31b5]">0{i + 1}</span>
-                  <h3 className="mt-2 font-display text-3xl font-extrabold tracking-[-.05em] text-[#151a35]">{item.title}</h3>
+                  <h3 className="mt-2 font-display text-3xl font-semibold tracking-[-.05em] text-[#151a35]">{item.title}</h3>
                   <p className="mt-3 leading-7 text-[#5c6178]">{item.blurb}</p>
                 </div>
                 <div className="flex min-h-[380px] items-center justify-center rounded-[2rem] border border-[#eceef5] bg-[#f5f6fa] p-6 md:min-h-[440px] md:p-12">

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+﻿import { useRef, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUpRight, Play } from 'lucide-react';
@@ -35,7 +35,7 @@ export function VideoReviews() {
       <div className="container-wide">
         <Reveal>
           <span className="font-mono-custom text-[10px] font-bold tracking-[.18em] text-[#8e31b5]">RESULTS</span>
-          <h2 className="mt-5 max-w-3xl font-display text-[clamp(2.2rem,5.2vw,4.2rem)] font-extrabold leading-[1.02] tracking-[-.07em] text-[#151a35]">
+          <h2 className="mt-5 max-w-3xl font-display text-[clamp(2.2rem,5.2vw,4.2rem)] font-semibold leading-[1.02] tracking-[-.07em] text-[#151a35]">
             What clients <span className="font-normal italic tracking-[-.02em]" style={{ fontFamily: serifAccent }}>say.</span>
           </h2>
           <p className="mt-5 max-w-lg text-[17px] leading-8 text-[#5c6178]">
@@ -100,7 +100,7 @@ export function VideoReviews() {
                                 onClick={() => setOpen(null)}
                                 className="mt-3 font-mono-custom text-[10px] font-bold tracking-[.14em] text-white/45 transition hover:text-white"
                               >
-                                CLOSE ✕
+                                CLOSE âœ•
                               </button>
                             </div>
                           </motion.div>

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+﻿import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
 import { headlineStats } from '@/data/proof';
@@ -26,7 +26,7 @@ function Stat({ value, label, prefix = '', suffix = '', decimals = 0 }: { value:
 
   return (
     <div ref={containerRef} className="stat-item text-center" data-testid={`stat-${label.toLowerCase().replaceAll(' ', '-')}`}>
-      <p ref={numberRef} className="stat-number font-display text-[clamp(2.1rem,5vw,3.5rem)] font-extrabold leading-none tracking-[-.055em] text-[#151a35]">
+      <p ref={numberRef} className="stat-number font-display text-[clamp(2.1rem,5vw,3.5rem)] font-semibold leading-none tracking-[-.055em] text-[#151a35]">
         {prefix}{value}{suffix}
       </p>
       <p className="mt-3 text-[11px] font-semibold uppercase tracking-[.16em] text-[#7a8199]">{label}</p>

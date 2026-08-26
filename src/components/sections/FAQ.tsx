@@ -38,7 +38,7 @@ export function FAQ() {
       <div className="container-wide grid gap-14 md:grid-cols-[minmax(0,.7fr)_minmax(0,1.3fr)] md:gap-24">
         <Reveal className="min-w-0">
           <span className="font-mono-custom text-[10px] font-bold tracking-[.18em] text-[#8e31b5]">QUESTIONS, ANSWERED</span>
-          <h2 className="mt-5 font-display text-[clamp(2.2rem,5.2vw,4.2rem)] font-extrabold tracking-[-.07em] text-[#151a35]">
+          <h2 className="mt-5 font-display text-[clamp(2.2rem,5.2vw,4.2rem)] font-semibold tracking-[-.07em] text-[#151a35]">
             Need<br />
             <span className="font-normal italic tracking-[-.02em]" style={{ fontFamily: serifAccent }}>help?</span>
           </h2>
@@ -64,7 +64,7 @@ export function FAQ() {
               >
                 {/* `min-w-0` lets the question shrink past its longest word, so the
                     `shrink-0` circle beside it can never be pushed off the edge. */}
-                <span className="min-w-0 break-words font-display text-lg font-bold tracking-[-.03em] text-[#151a35]">{question}</span>
+                <span className="min-w-0 break-words font-display text-lg font-semibold tracking-[-.03em] text-[#151a35]">{question}</span>
                 <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#d8dbe6] text-[#8e31b5] transition-transform duration-300 ${active === i ? 'rotate-45' : ''}`}>
                   <Plus size={17} />
                 </span>
