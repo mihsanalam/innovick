@@ -15,6 +15,10 @@ import { Code2, Palette, Search, Settings2, Target, Users } from 'lucide-react';
 export type Service = {
   icon: LucideIcon;
   title: string;
+  /** Route segment under /services — also drives the navbar dropdown. */
+  slug: string;
+  /** Shorter label for tight spots (navbar dropdown). Falls back to `title`. */
+  short?: string;
   desc: string;
   tags: string[];
   image?: string;
@@ -24,40 +28,53 @@ export const services: Service[] = [
   {
     icon: Target,
     title: 'Strategic Marketing',
+    slug: 'strategic-marketing',
     desc: 'Data-led campaign strategy across Meta and Google Ads that turns ad spend into predictable, trackable profit — not guesswork.',
     tags: ['Facebook Ads', 'Google Ads', 'Funnel Strategy', 'Retargeting', 'A/B Testing'],
   },
   {
     icon: Palette,
     title: 'Creative Design',
+    slug: 'creative-design',
     desc: 'Scroll-stopping visuals and video ad creatives built to convert, engineered around your brand — not a stock template.',
     tags: ['Ad Creatives', 'Branding', 'Motion', 'Short-form Video', 'Design Systems'],
   },
   {
     icon: Users,
     title: 'Social Media Management',
+    slug: 'social-media-management',
     desc: 'Full-service content, community, and posting management so your brand stays consistently present where your buyers already are.',
     tags: ['Content', 'Community', 'Calendar', 'Copywriting', 'Analytics'],
   },
   {
     icon: Code2,
     title: 'Web Development',
+    slug: 'web-development',
     desc: 'Fast, conversion-focused websites and landing pages built in React and Next.js, tuned around your customer journey.',
     tags: ['Next.js', 'Landing Pages', 'React', 'Performance', 'Analytics'],
   },
   {
     icon: Search,
     title: 'Search SEO',
+    slug: 'seo',
+    short: 'SEO',
     desc: 'Technical and content SEO that compounds your organic traffic month over month, long after the ad budget stops.',
     tags: ['Technical SEO', 'Content SEO', 'Audits', 'Keyword Intent', 'Schema'],
   },
   {
     icon: Settings2,
     title: 'Automation Services',
+    slug: 'automation-services',
     desc: 'CRM, lead capture, and follow-up automation that keeps working while you sleep — every lead answered, nothing dropped.',
     tags: ['CRM', 'Automation', 'Lead Capture', 'Email Flows', 'Integrations'],
   },
 ];
+
+/** Convenience lookup by route segment. */
+export function serviceBySlug(slug: string): Service | undefined {
+  return services.find(service => service.slug === slug);
+}
+
 
 /**
  * The four disciplines behind the sticky rail. `visual` is resolved in the

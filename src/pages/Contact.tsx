@@ -130,13 +130,11 @@ export function Contact() {
               right fit.
             </p>
 
-            {/* Qualification badges — who this call is actually for. */}
-            <div className="mt-9 flex flex-wrap items-start justify-center gap-x-8 gap-y-5">
+            {/* Qualification badges — who this call is actually for.
+                Mobile: a tight left-aligned stack. sm+: one centered row. */}
+            <div className="mx-auto mt-9 flex w-fit flex-col items-start gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-start sm:justify-center sm:gap-x-10 sm:gap-y-4">
               {fitBadges.map(({ icon: Icon, label }) => (
-                <div
-                  key={label}
-                  className="flex w-44 flex-col items-center gap-2.5 sm:w-auto sm:flex-row"
-                >
+                <div key={label} className="flex items-center gap-3">
                   <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#8e31b5]/10 text-[#8e31b5]">
                     <Icon size={18} strokeWidth={1.8} />
                   </span>
@@ -368,7 +366,7 @@ export function Contact() {
                   {/* Submit */}
                   <UiButton
                     type="submit"
-                    className="h-auto w-full rounded-full px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(142,49,181,.22)] transition-transform duration-300 hover:scale-[1.01] sm:w-auto"
+                    className="h-auto w-full cursor-pointer rounded-full px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(142,49,181,.22)] transition-transform duration-300 hover:scale-[1.01] sm:w-auto"
                     style={{ background: purpleGradient }}
                   >
                     Submit Form
