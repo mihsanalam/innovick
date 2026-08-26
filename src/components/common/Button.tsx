@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Link } from 'wouter';
 import { purpleGradient } from '@/lib/theme';
 
 /**
@@ -33,12 +34,27 @@ export function Button({
   className?: string;
 }) {
   const kind: ButtonVariant = variant ?? (outline ? 'outline' : 'brand');
+  const classes = `inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition-transform duration-300 hover:scale-[1.03] ${buttonStyles[kind]} ${className}`;
+  const style = kind === 'brand' ? { background: purpleGradient } : undefined;
+  const testId = `link-cta-${href.replace('#', '')}`;
+
+  // Internal routes (e.g. /contact) navigate client-side through wouter so the
+  // app never does a full page reload; hash anchors and external URLs stay as
+  // plain anchors.
+  if (href.startsWith('/')) {
+    return (
+      <Link href={href} className={classes} style={style} data-testid={testId}>
+        {children}
+      </Link>
+    );
+  }
+
   return (
     <a
       href={href}
-      className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition-transform duration-300 hover:scale-[1.03] ${buttonStyles[kind]} ${className}`}
-      style={kind === 'brand' ? { background: purpleGradient } : undefined}
-      data-testid={`link-cta-${href.replace('#', '')}`}
+      className={classes}
+      style={style}
+      data-testid={testId}
     >
       {children}
     </a>

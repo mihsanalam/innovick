@@ -35,10 +35,12 @@ export function ServiceDetail() {
         {/* -------------------------------------------------------------- */}
         {/* 1. Hero                                                         */}
         {/* -------------------------------------------------------------- */}
-        <section className="relative isolate bg-white px-5 pb-16 pt-[calc(92px+4rem)] md:pb-20">
+        <section className="relative isolate overflow-hidden bg-white px-5 pb-16 pt-[calc(92px+4rem)] md:pb-20">
           <div className="pointer-events-none absolute -left-32 -top-24 h-[380px] w-[380px] rounded-full bg-[#8e31b5]/10 blur-[130px]" />
 
-          <div className="container-wide relative max-w-3xl">
+          {/* Copy on the left, this service's own illustration on the right.
+              Stacks to a single column (image below) below lg. */}
+          <div className="container-wide relative grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
             <Reveal>
               {/* Tagline tag */}
               <span className="inline-flex items-center rounded-full border border-[#8e31b5]/25 bg-[#8e31b5]/[.07] px-3.5 py-1 font-mono-custom text-[10px] font-bold uppercase tracking-[.16em] text-[#8e31b5]">
@@ -77,6 +79,19 @@ export function ServiceDetail() {
                 <Button href="/contact" variant="brand" className="px-7 py-4 text-[15px]">
                   Book a Strategy Call <ArrowRight size={16} />
                 </Button>
+              </div>
+            </Reveal>
+
+            {/* Service image */}
+            <Reveal delay={0.15} className="relative">
+              <div className="pointer-events-none absolute -inset-5 rounded-[2.25rem] bg-gradient-to-br from-[#8E31B5]/15 via-transparent to-[#B565D6]/10 blur-[1px]" />
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] border border-[#e6e8f0] bg-[#f5f6fa] shadow-[0_30px_80px_rgba(21,26,53,.16)]">
+                <img
+                  src={page.image}
+                  alt={page.imageAlt}
+                  className="h-full w-full object-cover"
+                  loading="eager"
+                />
               </div>
             </Reveal>
           </div>
@@ -205,7 +220,7 @@ export function ServiceDetail() {
               45 minutes. A written plan you keep either way.
             </p>
             <div className="mt-8 flex justify-center">
-              <Button href="/contact" variant="white" className="px-7 py-4 text-[15px]">
+              <Button href="/contact" variant="brand" className="px-7 py-4 text-[15px]">
                 Book a Strategy Call <ArrowRight size={16} />
               </Button>
             </div>

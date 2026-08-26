@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
 import { ErrorBoundary } from '@/components/error-boundary';
@@ -16,6 +16,8 @@ import NotFound from '@/pages/not-found';
  */
 const ServicesIndex = lazy(() => import('@/pages/Services'));
 const ServiceDetail = lazy(() => import('@/pages/ServiceDetail'));
+const AboutPage = lazy(() => import('@/pages/About'));
+const SuccessPage = lazy(() => import('@/pages/Success'));
 
 /** Bare white screen — matches the page background while a chunk loads. */
 function RouteFallback() {
@@ -31,14 +33,37 @@ function RouteFallback() {
  */
 const queryClient = new QueryClient();
 
+/**
+ * Client-side navigation keeps the app alive, but the browser would otherwise
+ * preserve the old scroll position on a new "page". Reset to the top the way a
+ * fresh load would — instantly, so there's no visible scroll animation.
+ *
+ * `history.scrollRestoration` is pinned to `manual` once so a hard refresh / a
+ * browser back-forward doesn't jump the page back to a stale scroll offset
+ * before React has a chance to run.
+ */
+function ScrollToTop() {
+  const [pathname] = useLocation();
+  useEffect(() => {
+    if (window.history.scrollRestoration) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 function Router() {
   return (
     <ErrorBoundary resetKey={useLocation()[0]}>
+      <ScrollToTop />
       {/* Suspense covers the lazy service routes while their chunk loads. */}
       <Suspense fallback={<RouteFallback />}>
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/contact" component={Contact} />
+          <Route path="/about" component={AboutPage} />
+          <Route path="/success" component={SuccessPage} />
           <Route path="/services" component={ServicesIndex} />
           <Route path="/services/:slug" component={ServiceDetail} />
           <Route component={NotFound} />

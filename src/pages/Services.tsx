@@ -6,6 +6,7 @@ import {
   UserCheck,
   type LucideIcon,
 } from 'lucide-react';
+import { Link } from 'wouter';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { CursorFollower } from '@/components/common/CursorFollower';
@@ -109,7 +110,7 @@ export function Services() {
               const service = serviceBySlug(offering.slug)!;
               return (
                 <Reveal key={offering.slug} delay={(i % 3) * 0.08}>
-                  <a
+                  <Link
                     href={`/services/${service.slug}`}
                     className="group flex h-full flex-col rounded-2xl border border-[#e6e8f0] bg-white p-7 soft-shadow transition-transform duration-300 hover:-translate-y-1.5"
                   >
@@ -140,7 +141,7 @@ export function Services() {
                         className="transition-transform duration-300 group-hover:translate-x-1"
                       />
                     </span>
-                  </a>
+                  </Link>
                 </Reveal>
               );
             })}
@@ -226,7 +227,7 @@ export function Services() {
               45 minutes. A written plan you keep either way.
             </p>
             <div className="mt-8 flex justify-center">
-              <Button href="/contact" variant="white" className="px-7 py-4 text-[15px]">
+              <Button href="/contact" variant="brand" className="px-7 py-4 text-[15px]">
                 Book a Strategy Call <ArrowRight size={16} />
               </Button>
             </div>

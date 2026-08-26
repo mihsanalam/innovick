@@ -16,6 +16,20 @@ export const headlineStats = [
 ];
 
 /**
+ * The inline stat row at the top of `/success` — outcome numbers framed for
+ * prospective clients rather than scale numbers. Rendered through the same
+ * count-up `Stat` component the homepage band uses (see `sections/Stats`).
+ *
+ * TODO: confirm these against your real numbers before going live.
+ */
+export const successStats = [
+  { value: 135, suffix: '+', label: 'Brands Served' },
+  { value: 3.2, suffix: 'x', decimals: 1, label: 'Avg. ROAS Increase' },
+  { value: 90, suffix: '+', label: 'Projects Delivered' },
+  { value: 98, suffix: '%', label: 'Client Satisfaction' },
+];
+
+/**
  * The FAQ accordion. The first two carry the "why us" argument that used to have
  * its own comparison section — keep them near the top.
  */

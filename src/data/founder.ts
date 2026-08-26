@@ -7,7 +7,7 @@
  */
 export const founder = {
   name: 'Shahjahan Reza',
-  role: 'FOUNDER & ADVISOR',
+  role: 'FOUNDER & CEO',
   photo: '/founder.jpg',
   eyebrow: 'ABOUT ME',
   headline: 'I’m Shahjahan. I build marketing departments that run without founders.',

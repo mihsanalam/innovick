@@ -3,8 +3,9 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
 import { headlineStats } from '@/data/proof';
 
-/** One figure, counted up the first time it scrolls into view. */
-function Stat({ value, label, prefix = '', suffix = '', decimals = 0 }: { value: number; label: string; prefix?: string; suffix?: string; decimals?: number }) {
+/** One figure, counted up the first time it scrolls into view. Exported so
+ *  other pages (e.g. `/success`) reuse the exact same counter. */
+export function Stat({ value, label, prefix = '', suffix = '', decimals = 0 }: { value: number; label: string; prefix?: string; suffix?: string; decimals?: number }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const numberRef = useRef<HTMLParagraphElement>(null);
 

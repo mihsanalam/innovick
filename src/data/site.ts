@@ -15,11 +15,8 @@ export const contact = {
 
 export const navLinks: [string, string][] = [
   ['Services', '#services'],
-  ['Founder', '#founder'],
-  ['Work', '#work'],
-  ['Diagnose', '#diagnose'],
-  ['Reviews', '#reviews'],
-  ['FAQs', '#faqs'],
+  ['Success', '/success'],
+  ['About', '/about'],
   ['Contact', '/contact'],
 ];
 
@@ -38,4 +35,27 @@ export const socialLinks: { label: string; href: string; icon: LucideIcon }[] = 
   { label: 'LinkedIn', href: 'https://linkedin.com', icon: Linkedin },
   { label: 'Instagram', href: 'https://instagram.com', icon: Instagram },
   { label: 'Twitter', href: 'https://x.com', icon: Twitter },
+];
+
+/**
+ * The client roster, defined once and pulled from everywhere.
+ *
+ * - `/about` trust strip shows the first eight (`.slice(0, 8)`).
+ * - `/success` logo band shows all twelve — the same list, just wider.
+ *
+ * Add new clients here and both pages pick them up automatically.
+ */
+export const clientNames = [
+  'Loom & Thread',
+  'GreenLeaf Organics',
+  'UrbanNest Furniture',
+  'Pinnacle Skincare',
+  'Chowdhury Electronics',
+  'Zenith Wellness',
+  'CraftBox Bangladesh',
+  'Nexora Tech',
+  'Padma Fresh',
+  'Meghna Apparel',
+  'Bengal Roasters',
+  'Skyline Interiors',
 ];

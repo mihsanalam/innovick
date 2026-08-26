@@ -16,6 +16,10 @@ export type ServicePage = {
   subheadline: string;
   price: string;
   duration: string;
+  /** Hero illustration shown next to the copy. Swap for a real render in `public/services/`. */
+  image: string;
+  /** Accesible description of the hero image. */
+  imageAlt: string;
   painPoints: string[];
   included: string[];
   process: ServiceProcessStep[];
@@ -26,6 +30,8 @@ export const servicePages: Record<string, ServicePage> = {
   'strategic-marketing': {
     name: 'Strategic Marketing',
     tagline: 'Paid Growth',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+    imageAlt: 'Marketing analytics dashboard with conversion charts and graphs',
     headline: 'Ad Campaigns Built to Convert, Not Just Impress',
     subheadline:
       'We manage Meta and Google Ads with one goal: turning your budget into predictable, measurable revenue.',
@@ -57,6 +63,8 @@ export const servicePages: Record<string, ServicePage> = {
   'creative-design': {
     name: 'Creative Design',
     tagline: 'Brand & Visual Design',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80',
+    imageAlt: 'Designer workspace with brand color swatches and creative tools',
     headline: 'Design That Makes Your Competitors Nervous',
     subheadline:
       'Branding, ad creatives, and content design built to stop the scroll and build brand trust.',
@@ -88,6 +96,8 @@ export const servicePages: Record<string, ServicePage> = {
   'social-media-management': {
     name: 'Social Media Management',
     tagline: 'Content & Community',
+    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80',
+    imageAlt: 'Hand holding a smartphone with social media apps open',
     headline: 'Hands-Off Social Media That Actually Grows',
     subheadline:
       'Full content planning, posting, and community management so your brand stays consistently present.',
@@ -119,6 +129,8 @@ export const servicePages: Record<string, ServicePage> = {
   'web-development': {
     name: 'Web Development',
     tagline: 'Websites & Landing Pages',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80',
+    imageAlt: 'Laptop showing lines of code on screen for web development',
     headline: 'Websites Built to Convert, Not Just Look Good',
     subheadline:
       'Fast, modern websites and landing pages built in React and Next.js, designed around your customer journey.',
@@ -150,6 +162,8 @@ export const servicePages: Record<string, ServicePage> = {
   'seo': {
     name: 'SEO',
     tagline: 'Organic Growth',
+    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&q=80',
+    imageAlt: 'Person working on a laptop with search and ranking notes visible',
     headline: 'Rank Higher, Compound Your Traffic',
     subheadline:
       'Technical and content SEO that builds organic traffic month over month, not just a one-time audit.',
@@ -181,6 +195,8 @@ export const servicePages: Record<string, ServicePage> = {
   'automation-services': {
     name: 'Automation Services',
     tagline: 'CRM & Workflow Automation',
+    image: 'https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=1200&q=80',
+    imageAlt: 'Rendered robotic automation concept representing workflow systems',
     headline: 'Automation That Works While You Sleep',
     subheadline:
       'CRM setup, lead capture, and follow-up automation so no lead ever falls through the cracks.',

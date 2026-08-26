@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, Menu, X } from 'lucide-react';
+import { Link } from 'wouter';
 import { Button } from '@/components/common/Button';
 import { Logo } from '@/components/common/Logo';
 import { navLinks } from '@/data/site';
@@ -50,25 +51,36 @@ export function Navbar() {
           : 'border-[#151a35]/[.05] bg-white/65'
       }`}
     >
+      {/* Logo stays left; the menu and CTA sit together on the right. */}
       <div className="container-wide flex h-[92px] items-center justify-between">
         <Logo size="lg" />
-        <nav className="hidden items-center gap-7 md:flex">
-          {navLinks.map(([label, href]) =>
-            href === '#services' ? (
-              <ServicesMenu key={href} />
-            ) : (
-              <a
-                key={href}
-                href={href}
-                className="text-[13px] font-semibold text-[#5c6178] transition-colors hover:text-[#8e31b5]"
-                data-testid={`link-nav-${label.toLowerCase().replace(' ', '-')}`}
-              >
-                {label}
-              </a>
-            ),
-          )}
-        </nav>
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-8 md:flex">
+          <nav className="flex items-center gap-8">
+            {navLinks.map(([label, href]) =>
+              href === '#services' ? (
+                <ServicesMenu key={href} />
+              ) : href.startsWith('/') ? (
+                /* Route links go through wouter so the page never reloads. */
+                <Link
+                  key={href}
+                  href={href}
+                  className="text-[15px] font-semibold text-[#5c6178] transition-colors hover:text-[#8e31b5]"
+                  data-testid={`link-nav-${label.toLowerCase().replace(' ', '-')}`}
+                >
+                  {label}
+                </Link>
+              ) : (
+                <a
+                  key={href}
+                  href={href}
+                  className="text-[15px] font-semibold text-[#5c6178] transition-colors hover:text-[#8e31b5]"
+                  data-testid={`link-nav-${label.toLowerCase().replace(' ', '-')}`}
+                >
+                  {label}
+                </a>
+              ),
+            )}
+          </nav>
           <Button href="#contact" variant="brand">
             Book a Strategy Call <ArrowRight size={15} />
           </Button>
@@ -107,7 +119,7 @@ export function Navbar() {
                     onClick={() => setServicesOpen(o => !o)}
                     aria-expanded={servicesOpen}
                     data-testid="link-mobile-services"
-                    className="flex w-full items-center justify-between gap-4 py-3 text-left text-sm font-semibold text-[#5c6178]"
+                    className="flex w-full items-center justify-between gap-4 py-3 text-left text-[15px] font-semibold text-[#5c6178]"
                   >
                     Services
                     <ChevronDown
@@ -118,25 +130,36 @@ export function Navbar() {
                   {servicesOpen && (
                     <div className="pb-3">
                       {services.map(service => (
-                        <a
+                        <Link
                           key={service.slug}
                           href={`/services/${service.slug}`}
                           onClick={() => setOpen(false)}
-                          className="block rounded-lg px-3 py-2 text-[13px] font-medium text-[#5c6178]"
+                          className="block rounded-lg px-3 py-2 text-[14px] font-medium text-[#5c6178]"
                         >
                           {service.short ?? service.title}
-                        </a>
+                        </Link>
                       ))}
-                      <a
+                      <Link
                         href="/services"
                         onClick={() => setOpen(false)}
-                        className="block rounded-lg px-3 py-2 text-[13px] font-bold text-[#151a35]"
+                        className="block rounded-lg px-3 py-2 text-[14px] font-bold text-[#151a35]"
                       >
                         View All Services →
-                      </a>
+                      </Link>
                     </div>
                   )}
                 </div>
+              ) : href.startsWith('/') ? (
+                /* Route links (e.g. /success) navigate client-side. */
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  className="block border-b border-[#eceef5] py-3 text-[15px] font-semibold text-[#5c6178] last:border-0"
+                  data-testid={`link-mobile-${label.toLowerCase().replace(' ', '-')}`}
+                >
+                  {label}
+                </Link>
               ) : (
                 <a
                   key={href}
@@ -144,7 +167,7 @@ export function Navbar() {
                   // which is already a real route.
                   href={href === '#faqs' || href === '#founder' || href === '#work' || href === '#diagnose' || href === '#reviews' ? href : href}
                   onClick={() => setOpen(false)}
-                  className="block border-b border-[#eceef5] py-3 text-sm font-semibold text-[#5c6178] last:border-0"
+                  className="block border-b border-[#eceef5] py-3 text-[15px] font-semibold text-[#5c6178] last:border-0"
                   data-testid={`link-mobile-${label.toLowerCase().replace(' ', '-')}`}
                 >
                   {label}
@@ -195,7 +218,7 @@ function ServicesMenu() {
             setOpen(true);
           }}
           onMouseLeave={scheduleClose}
-          className="flex items-center gap-1 text-[13px] font-semibold text-[#5c6178] outline-none transition-colors hover:text-[#8e31b5] data-[state=open]:text-[#8e31b5]"
+          className="flex items-center gap-1 text-[15px] font-semibold text-[#5c6178] outline-none transition-colors hover:text-[#8e31b5] data-[state=open]:text-[#8e31b5]"
           data-testid="link-nav-services"
         >
           Services
@@ -217,9 +240,9 @@ function ServicesMenu() {
           <DropdownMenuItem
             key={service.slug}
             asChild
-            className="cursor-pointer rounded-lg px-3 py-2 text-[13px] font-semibold text-[#5c6178] focus:bg-[#8e31b5]/[.07] focus:text-[#8e31b5]"
+            className="cursor-pointer rounded-lg px-3 py-2 text-[14px] font-semibold text-[#5c6178] focus:bg-[#8e31b5]/[.07] focus:text-[#8e31b5]"
           >
-            <a href={`/services/${service.slug}`}>{service.short ?? service.title}</a>
+            <Link href={`/services/${service.slug}`}>{service.short ?? service.title}</Link>
           </DropdownMenuItem>
         ))}
 
@@ -227,9 +250,9 @@ function ServicesMenu() {
 
         <DropdownMenuItem
           asChild
-          className="cursor-pointer rounded-lg px-3 py-2 text-[13px] font-bold text-[#151a35] focus:bg-[#8e31b5]/[.07] focus:text-[#8e31b5]"
+          className="cursor-pointer rounded-lg px-3 py-2 text-[14px] font-bold text-[#151a35] focus:bg-[#8e31b5]/[.07] focus:text-[#8e31b5]"
         >
-          <a href="/services">View All Services →</a>
+          <Link href="/services">View All Services →</Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
