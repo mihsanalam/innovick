@@ -6,20 +6,20 @@ import { CursorFollower } from '@/components/common/CursorFollower';
 import { Reveal } from '@/components/common/Reveal';
 import { Button } from '@/components/common/Button';
 import { SectionHeading } from '@/components/common/SectionHeading';
-import { Stats } from '@/components/sections/Stats';
+import { Stat, Stats } from '@/components/sections/Stats';
 import { founder } from '@/data/founder';
-import { teamMembers, type TeamMember } from '@/data/team';
+
 import { clientNames } from '@/data/site';
 
 /**
  * /about — who Innovick is, in six moves: hero with the founder's face, the
  * same proof strip the homepage leads with, six reasons brands stay, a
- * philosophy band, the team roster, and one CTA.
+ * philosophy band,a team-photo band with proof stats,and one CTA.
  *
  * Copy that already lives in `src/data/` is imported, never re-declared:
  * the founder comes from `data/founder.ts`, stats from `data/proof.ts` via the
- * shared `sections/Stats` section, teammates from `data/team.ts`. Only copy
- * unique to this page (the "why" cards and pillars) lives here.
+ * shared `sections/Stats` section. Only copy unique to this page (the "why"
+ * cards and pillars) lives here.
  */
 
 /** The "why brands love us" grid. Photos are stand-ins until real ones exist. */
@@ -99,10 +99,10 @@ function FounderPortrait() {
   return (
     // Gentle tilt at rest (lg up); straightens back to level while hovered,
     // desktop pointers only — touch devices never see a stuck mid-hover state.
-    <div className="relative mx-auto w-full max-w-[420px] transition-transform duration-500 ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:rotate-0 lg:rotate-2">
-      <div className="overflow-hidden rounded-[2rem] border border-[#e6e8f0] bg-[#eef0f6] shadow-[0_30px_80px_-30px_rgba(21,26,53,.35)]">
+    <div className="relative mx-auto w-full max-w-105 transition-transform duration-500 ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:rotate-0 lg:rotate-2">
+      <div className="overflow-hidden rounded-4xl border border-[#e6e8f0] bg-[#eef0f6] shadow-[0_30px_80px_-30px_rgba(21,26,53,.35)]">
         {failed ? (
-          <div className="grid aspect-[3/4] place-items-center bg-gradient-to-br from-[#eceef5] to-[#e4e0ef]">
+          <div className="grid aspect-3/4 place-items-center bg-gradient-to-br from-[#eceef5] to-[#e4e0ef]">
             <span className="font-display text-6xl font-semibold tracking-[-.05em] text-[#151a35]/15">{initials}</span>
           </div>
         ) : (
@@ -158,54 +158,6 @@ function WhyCard({ card }: { card: (typeof whyCards)[number] }) {
         <p className="mt-auto pt-5 text-sm italic leading-6 text-[#7a8199]">“{card.quote}”</p>
       </div>
     </article>
-  );
-}
-
-/**
- * One roster portrait: grayscale by default, colour + slight scale on hover
- * (desktop), tap/focus (mobile & keyboard) — with the name plate sliding up
- * from behind a dark scrim so it stays legible on any photo.
- */
-function TeamMemberCard({ member }: { member: TeamMember }) {
-  const [failed, setFailed] = useState(false);
-  const initials = member.name.split(' ').map(part => part[0]).join('');
-
-  return (
-    // Even spacing instead of the old overlap: rows are always full sets of
-    // cards (2-up below md, 4-up at md and wider) separated by a real flex
-    // gap, and each card's width subtracts its share of that gap so every row
-    // lines up flush at both edges and scales smoothly on phones. :focus (tap)
-    // as well as :focus-visible (keyboard) trigger the colour reveal.
-    <div
-      tabIndex={0}
-      aria-label={`${member.name}, ${member.role}`}
-      className="group relative z-0 w-[calc(50%-.5rem)] cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#8e31b5]/50 md:w-[calc(25%-1.125rem)]"
-    >
-      <figure className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-[#eef0f6] shadow-[0_18px_50px_rgba(21,26,53,.12)] transition-[transform,filter] duration-[400ms] ease-out grayscale group-hover:scale-105 group-hover:grayscale-0 group-focus-visible:scale-105 group-focus-visible:grayscale-0 group-focus:scale-105 group-focus:grayscale-0">
-        {failed ? (
-          <div className="grid h-full w-full place-items-center bg-gradient-to-br from-[#eceef5] to-[#e4e0ef]">
-            <span className="font-display text-4xl font-semibold tracking-[-.05em] text-[#151a35]/15">{initials}</span>
-          </div>
-        ) : (
-          <img
-            src={member.photo}
-            alt={member.name}
-            width="600" height="800"
-            loading="lazy"
-            decoding="async"
-            onError={() => setFailed(true)}
-            className="h-full w-full object-cover object-top"
-          />
-        )}
-
-        {/* Name plate — hidden until hover/tap/focus, sliding up from below. */}
-        <figcaption className="absolute inset-x-0 bottom-0 translate-y-4 bg-gradient-to-t from-[#0d1128]/90 via-[#0d1128]/45 to-transparent px-3 pb-4 pt-12 opacity-0 transition-[opacity,transform] duration-[400ms] ease-out group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 group-focus:translate-y-0 group-focus:opacity-100 sm:px-4">
-          <p className="font-display text-sm font-semibold leading-tight text-white">{member.name}</p>
-          <p className="mt-1 font-mono-custom text-[9px] font-bold uppercase tracking-[.14em] text-white/75">{member.role}</p>
-          <p className="mt-1.5 text-[11px] leading-snug text-white/60">{member.oneLiner}</p>
-        </figcaption>
-      </figure>
-    </div>
   );
 }
 
@@ -346,29 +298,39 @@ export function About() {
         </section>
 
         {/* -------------------------------------------------------------- */}
-        {/* 5. Team — B&W-to-colour hover roster                            */}
+        {/* 5. Team — headline, team photo, proof stats                  */}
         {/* -------------------------------------------------------------- */}
         <section className="bg-[#f5f6fa] py-20 md:py-24">
           <div className="container-wide">
-            <SectionHeading
-              eyebrow="THE PEOPLE BEHIND THE WORK"
-              lead="Meet The Team"
-              blurb="One team across strategy, design, development, and growth."
-            />
+            <div className="mx-auto max-w-3xl text-center">
+              <SectionHeading
+                eyebrow="THE PEOPLE BEHIND THE WORK"
+                lead="More than an agency."
+                accent="The only digital team you'll ever need."
+                breakBefore
+              />
+            </div>
 
-            {/* Overlapping lineup: 4 per row from md up, 2 per row below that.
-                Hover/tap a portrait and it lifts to colour above its neighbours
-                while its name plate slides up. Entrance matches the site's
-                Reveal pattern. */}
-            {/* Flex-wrap lineup with real gutters: 2-up on phones, 4-up from
-                md up. Each card's width is `calc(<per-card> - <gap share>)`,
-                matching the gap classes here, so rows fill edge-to-edge with
-                even spacing at every breakpoint. */}
+            {/* The team photo — one wide, centered shot of the whole crew. */}
             <Reveal delay={0.1}>
-              <div className="mt-14 flex flex-wrap items-start justify-center gap-x-4 gap-y-8 md:gap-x-6">
-                {teamMembers.map(member => (
-                  <TeamMemberCard key={member.name} member={member} />
-                ))}
+              <figure className="relative mt-14 h-[280px] overflow-hidden rounded-[2rem] border border-[#e6e8f0] sm:h-[360px] md:h-[440px] lg:h-[520px]">
+                <img
+                  src="/image_team.avif"
+                  alt="The Innovick team — the people behind the work"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                />
+              </figure>
+            </Reveal>
+
+            {/* Proof stats — the same count-up `Stat` the homepage uses. */}
+            <Reveal delay={0.2}>
+              <div className="mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
+                <Stat value={30} suffix="+" label="Team Members" />
+                <Stat value={24} suffix="/7" label="Dedicated Support" />
+                <Stat value={98} suffix="%" label="Client Satisfaction" />
+                <Stat value={5} suffix="+" label="Core Services" />
               </div>
             </Reveal>
           </div>
