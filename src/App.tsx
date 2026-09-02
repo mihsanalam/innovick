@@ -7,6 +7,8 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import Home from '@/pages/Home';
 import Contact from '@/pages/Contact';
 import NotFound from '@/pages/not-found';
+import { SmoothScroll } from '@/components/layout/SmoothScroll';
+import { scrollToTopY } from '@/lib/scroll';
 
 /**
  * Service pages are lazy-loaded: they're only reachable through the navbar
@@ -48,7 +50,7 @@ function ScrollToTop() {
     if (window.history.scrollRestoration) {
       window.history.scrollRestoration = 'manual';
     }
-    window.scrollTo(0, 0);
+    scrollToTopY();
   }, [pathname]);
   return null;
 }
@@ -57,6 +59,7 @@ function Router() {
   return (
     <ErrorBoundary resetKey={useLocation()[0]}>
       <ScrollToTop />
+      <SmoothScroll />
       {/* Suspense covers the lazy service routes while their chunk loads. */}
       <Suspense fallback={<RouteFallback />}>
         <Switch>

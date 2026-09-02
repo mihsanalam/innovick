@@ -77,7 +77,13 @@
 
 @layer base {
   * { @apply border-border; }
-  html { scroll-behavior: smooth; }
+  /* Smooth page scroll is handled by Lenis (src/lib/scroll.ts). These classes
+     are the CSS Lenis relies on — without them its classes can't force
+     `scroll-behavior: auto`, which the html rule below used to do. */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: hidden; }
   body { @apply font-sans antialiased bg-background text-foreground; margin: 0; }
   ::selection { background: #dcb5ea; color: #151a35; }
 }
