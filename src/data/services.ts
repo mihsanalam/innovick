@@ -30,6 +30,7 @@ export const services: Service[] = [
     title: 'Strategic Marketing',
     slug: 'strategic-marketing',
     desc: 'Data-led campaign strategy across Meta and Google Ads that turns ad spend into predictable, trackable profit — not guesswork.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
     tags: ['Facebook Ads', 'Google Ads', 'Funnel Strategy', 'Retargeting', 'A/B Testing'],
   },
   {
@@ -37,6 +38,7 @@ export const services: Service[] = [
     title: 'Creative Design',
     slug: 'creative-design',
     desc: 'Scroll-stopping visuals and video ad creatives built to convert, engineered around your brand — not a stock template.',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80',
     tags: ['Ad Creatives', 'Branding', 'Motion', 'Short-form Video', 'Design Systems'],
   },
   {
@@ -44,6 +46,7 @@ export const services: Service[] = [
     title: 'Social Media Management',
     slug: 'social-media-management',
     desc: 'Full-service content, community, and posting management so your brand stays consistently present where your buyers already are.',
+    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80',
     tags: ['Content', 'Community', 'Calendar', 'Copywriting', 'Analytics'],
   },
   {
@@ -51,6 +54,7 @@ export const services: Service[] = [
     title: 'Web Development',
     slug: 'web-development',
     desc: 'Fast, conversion-focused websites and landing pages built in React and Next.js, tuned around your customer journey.',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80',
     tags: ['Next.js', 'Landing Pages', 'React', 'Performance', 'Analytics'],
   },
   {
@@ -59,6 +63,7 @@ export const services: Service[] = [
     slug: 'seo',
     short: 'SEO',
     desc: 'Technical and content SEO that compounds your organic traffic month over month, long after the ad budget stops.',
+    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&q=80',
     tags: ['Technical SEO', 'Content SEO', 'Audits', 'Keyword Intent', 'Schema'],
   },
   {
@@ -66,6 +71,7 @@ export const services: Service[] = [
     title: 'Automation Services',
     slug: 'automation-services',
     desc: 'CRM, lead capture, and follow-up automation that keeps working while you sleep — every lead answered, nothing dropped.',
+    image: 'https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=1200&q=80',
     tags: ['CRM', 'Automation', 'Lead Capture', 'Email Flows', 'Integrations'],
   },
 ];

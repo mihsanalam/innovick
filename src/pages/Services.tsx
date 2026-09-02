@@ -112,11 +112,30 @@ export function Services() {
                 <Reveal key={offering.slug} delay={(i % 3) * 0.08}>
                   <Link
                     href={`/services/${service.slug}`}
-                    className="group flex h-full flex-col rounded-2xl border border-[#e6e8f0] bg-white p-7 soft-shadow transition-transform duration-300 hover:-translate-y-1.5"
+                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#e6e8f0] bg-white p-7 soft-shadow transition-transform duration-300 hover:-translate-y-1.5"
                   >
-                    <span className="grid h-11 w-11 place-items-center rounded-full bg-[#8e31b5]/10 text-[#8e31b5]">
-                      <service.icon size={20} strokeWidth={1.8} />
-                    </span>
+                    {service.image ? (
+                      <>
+                        {/* Image header — edge-to-edge, tinted by default and
+                            lifting to full colour (with a gentle zoom) on hover. */}
+                        <span className="relative -mx-7 -mt-7 mb-6 overflow-hidden">
+                          <img
+                            src={service.image}
+                            alt={service.title}
+                            loading="lazy"
+                            decoding="async"
+                            className="h-48 w-full object-cover grayscale transition-[transform,filter] duration-500 ease-out group-hover:scale-[1.05] group-hover:grayscale-0"
+                          />
+                          <span className="absolute left-5 top-5 grid h-11 w-11 place-items-center rounded-full bg-white/90 text-[#8e31b5] shadow-sm backdrop-blur-md">
+                            <service.icon size={20} strokeWidth={1.8} />
+                          </span>
+                        </span>
+                      </>
+                    ) : (
+                      <span className="grid h-11 w-11 place-items-center rounded-full bg-[#8e31b5]/10 text-[#8e31b5]">
+                        <service.icon size={20} strokeWidth={1.8} />
+                      </span>
+                    )}
                     <h2 className="mt-5 font-display text-lg font-semibold tracking-[-.02em] text-[#151a35]">
                       {service.short ?? service.title}
                     </h2>
