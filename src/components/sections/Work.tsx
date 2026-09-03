@@ -1,17 +1,14 @@
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import { gsap, prefersReducedMotion } from '@/lib/gsap';
-import { Reveal } from '@/components/common/Reveal';
 import { workShowcase, type WorkTile } from '@/data/work';
-import { serifAccent } from '@/lib/theme';
 
 /**
  * The work gallery — a wall of screenshots.
  *
- * Centred heading over a grid of tiles, each holding one piece of proof: an ad
- * manager grab, a dashboard, a finished site, a creative. This replaced a stack of
- * four abstract project cards — a prospective client is trying to see the actual
- * output, so the actual output is what's on the page.
+ * A grid of tiles, each holding one piece of proof: an ad manager grab, a
+ * dashboard, a finished site, a creative. A prospective client is trying to see
+ * the actual output, so the actual output is what's on the page.
  *
  * All copy and images live in `src/data/work.ts` — drop files into `public/work/`
  * and point each tile's `image` at them. A tile with no image renders a neutral
@@ -52,23 +49,6 @@ export function Work() {
   return (
     <section ref={workRef} id="work" className="bg-[#f5f6fa] py-24 md:py-32">
       <div className="container-wide">
-        <Reveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="font-mono-custom text-[10px] font-bold tracking-[.18em] text-[#8e31b5]">PROVEN OUTPUT</span>
-            <h2 className="mt-5 font-display text-[clamp(2.2rem,5.4vw,4.2rem)] font-semibold leading-[1.04] tracking-[-.07em] text-[#151a35]">
-              The receipts,{' '}
-              <span className="text-[#9aa0b4]">not just the</span>{' '}
-              <span className="font-normal italic tracking-[-.02em]" style={{ fontFamily: serifAccent }}>
-                promises<span className="text-[#8e31b5]">.</span>
-              </span>
-            </h2>
-            <p className="mx-auto mt-5 max-w-xl text-[17px] leading-8 text-[#5c6178]">
-              Screenshots straight from the ad managers, dashboards, and launches —
-              real campaigns we've run, and the numbers our clients kept.
-            </p>
-          </div>
-        </Reveal>
-
         {/* 2-up on phones, 4-up from md. Add or remove tiles in the data file;
             the grid just wraps and the stagger re-reads the column count. */}
         <div className="work-grid mt-14 grid grid-cols-2 gap-4 md:mt-16 md:grid-cols-4 md:gap-5">

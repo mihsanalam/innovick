@@ -8,7 +8,6 @@ import { Services } from '@/components/sections/Services';
 import { Founder } from '@/components/sections/Founder';
 import { Capabilities } from '@/components/sections/Capabilities';
 import { Work } from '@/components/sections/Work';
-import { Flow } from '@/components/sections/Flow';
 import { Diagnose } from '@/components/sections/Diagnose';
 import { Team } from '@/components/sections/Team';
 import { VideoReviews } from '@/components/sections/VideoReviews';
@@ -37,7 +36,6 @@ export function Home() {
         <Founder />
         <Capabilities />
         <Work />          {/* tinted */}
-        <Flow />          {/* white — the floating "momentum" band */}
         <Diagnose />      {/* dark — the switchboard, and the first dark band */}
         <Team />
         <VideoReviews />  {/* tinted */}

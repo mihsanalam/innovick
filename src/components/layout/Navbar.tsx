@@ -18,25 +18,15 @@ import {
  * Frosted glass, the whole way down the page: translucent white over a heavy
  * backdrop blur with a hairline bottom edge. The only thing scrolling changes is
  * how solid it gets — the type stays ink either way, because the hero is white.
- *
- * The hairline progress bar is written straight to the DOM on scroll rather than
- * through state, so dragging the scrollbar doesn't re-render the header on
- * every frame.
  */
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
-  const progressRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 48);
-      const bar = progressRef.current;
-      if (bar) {
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        bar.style.transform = `scaleX(${max > 0 ? Math.min(window.scrollY / max, 1) : 0})`;
-      }
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -94,13 +84,6 @@ export function Navbar() {
           {open ? <X size={23} /> : <Menu size={23} />}
         </button>
       </div>
-
-      {/* Reading progress — 1px, easy to miss, hard to unsee. */}
-      <span
-        ref={progressRef}
-        aria-hidden="true"
-        className="block h-px origin-left scale-x-0 bg-gradient-to-r from-[#8e31b5] to-[#c27cdf]"
-      />
 
       <AnimatePresence>
         {open && (
