@@ -1,4 +1,5 @@
 ﻿import { Reveal } from '@/components/common/Reveal';
+import { WordReveal } from '@/components/visuals/WordReveal';
 import { serifAccent } from '@/lib/theme';
 
 /**
@@ -34,13 +35,16 @@ export function SectionHeading({
         {eyebrow}
       </span>
       <h2 className={`mt-5 max-w-3xl font-display text-[clamp(2.1rem,5vw,4.2rem)] font-semibold leading-[1.02] tracking-[-.065em] ${dark ? 'text-white' : 'text-[#151a35]'}`}>
-        {lead}
+        {/* G2 · word-by-word clip-blinds reveal on the display type. */}
+        <WordReveal text={lead} />
         {accent && (
           <>
             {breakBefore ? <br /> : ' '}
-            <span className="font-normal italic tracking-[-.02em]" style={{ fontFamily: serifAccent }}>
-              {accent}
-            </span>
+            <WordReveal
+              text={accent}
+              className="font-normal italic tracking-[-.02em]"
+              style={{ fontFamily: serifAccent }}
+            />
           </>
         )}
       </h2>

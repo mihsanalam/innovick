@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Link } from 'wouter';
 import { purpleGradient } from '@/lib/theme';
+import { Magnetic } from '@/components/common/Magnetic';
 
 /**
  * `brand`   — the purple gradient. Used sparingly; purple is an accent now.
@@ -40,24 +41,31 @@ export function Button({
 
   // Internal routes (e.g. /contact) navigate client-side through wouter so the
   // app never does a full page reload; hash anchors and external URLs stay as
-  // plain anchors.
+  // plain anchors. Both are wrapped in `Magnetic` (G1) — every CTA on the site
+  // drifts toward the cursor when it hovers nearby. Touch devices and reduced-
+  // motion users get the plain button; the wrapper only activates for fine
+  // pointers without a reduce request.
   if (href.startsWith('/')) {
     return (
-      <Link href={href} className={classes} style={style} data-testid={testId}>
-        {children}
-      </Link>
+      <Magnetic>
+        <Link href={href} className={classes} style={style} data-testid={testId}>
+          {children}
+        </Link>
+      </Magnetic>
     );
   }
 
   return (
-    <a
-      href={href}
-      className={classes}
-      style={style}
-      data-testid={testId}
-    >
-      {children}
-    </a>
+    <Magnetic>
+      <a
+        href={href}
+        className={classes}
+        style={style}
+        data-testid={testId}
+      >
+        {children}
+      </a>
+    </Magnetic>
   );
 }
 

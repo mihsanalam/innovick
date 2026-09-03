@@ -16,6 +16,7 @@ import { Button } from '@/components/common/Button';
 import { StarRating } from '@/components/common/StarRating';
 import { VideoReviewCard } from '@/components/common/VideoReviewCard';
 import { Stat } from '@/components/sections/Stats';
+import { ConfettiOnView } from '@/components/visuals/ConfettiOnView';
 import { clientNames } from '@/data/site';
 import { successStats } from '@/data/proof';
 import { videoReviews, writtenTestimonials } from '@/data/reviews';
@@ -198,7 +199,9 @@ export function Success() {
             <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
               {resultCards.map(({ icon: Icon, label, text }, i) => (
                 <Reveal key={label} delay={(i % 3) * 0.08}>
-                  <div className="flex h-full items-start gap-4 rounded-2xl border border-white/10 bg-white/[.04] px-6 py-6 transition-colors duration-300 hover:border-white/25">
+                  <div className="relative flex h-full items-start gap-4 rounded-2xl border border-white/10 bg-white/[.04] px-6 py-6 transition-colors duration-300 hover:border-white/25">
+                    {/* P1 · the card bursts once, the first time it scrolls in. */}
+                    <ConfettiOnView />
                     <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[#8e31b5]/25 text-[#c27cdf]">
                       <Icon size={20} strokeWidth={1.8} />
                     </span>

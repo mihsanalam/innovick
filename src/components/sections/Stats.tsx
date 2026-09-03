@@ -2,6 +2,7 @@
 import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
 import { headlineStats } from '@/data/proof';
+import { fireConfetti } from '@/components/visuals/confetti';
 
 /** One figure, counted up the first time it scrolls into view. Exported so
  *  other pages (e.g. `/success`) reuse the exact same counter. */
@@ -21,7 +22,11 @@ export function Stat({ value, label, prefix = '', suffix = '', decimals = 0 }: {
       scrollTrigger: { trigger: containerRef.current, start: 'top 90%', once: true },
       // toFixed(0) rounds, so whole-number stats need no special casing.
       onUpdate: () => { targetEl.textContent = `${prefix}${counter.val.toFixed(decimals)}${suffix}`; },
-      onComplete: () => { targetEl.textContent = `${prefix}${value}${suffix}`; },
+      onComplete: () => {
+        targetEl.textContent = `${prefix}${value}${suffix}`;
+        // H5 · dopamine pop — a small purple-white burst as the number lands.
+        if (numberRef.current) fireConfetti(numberRef.current);
+      },
     });
   }, { scope: containerRef });
 
