@@ -13,6 +13,24 @@ export const contact = {
   location: 'Dhaka, Bangladesh',
 } as const;
 
+/**
+ * Cal.com booking page — the paid / priority strategy-call scheduling link.
+ * The embed popup only needs the path portion (everything after cal.com),
+ * e.g. "mihsanalam/30min".
+ */
+export const calBookingLink = 'https://cal.com/mihsanalam/30min';
+
+/**
+ * Web3Forms access key (https://web3forms.com). Safe to ship in frontend code —
+ * it only routes submissions to the inbox the key was created with.
+ *
+ * Currently unused: the Contact page's "Request a Meeting" form now hands off
+ * to a prefilled Cal.com embed instead of posting here. Kept on purpose in
+ * case a simple form shows up later (e.g. a newsletter signup or the "Get
+ * Support" card).
+ */
+export const web3FormsAccessKey = '87da962f-d9da-41c2-a288-555f2874951b';
+
 export const navLinks: [string, string][] = [
   ['Services', '#services'],
   ['Success', '/success'],

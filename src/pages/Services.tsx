@@ -12,6 +12,7 @@ import { Footer } from '@/components/layout/Footer';
 import { CursorFollower } from '@/components/common/CursorFollower';
 import { Reveal } from '@/components/common/Reveal';
 import { Button } from '@/components/common/Button';
+import { RoiCalculator } from '@/components/visuals/RoiCalculator';
 import { serviceBySlug } from '@/data/services';
 
 /**
@@ -166,6 +167,11 @@ export function Services() {
             })}
           </div>
         </section>
+
+        {/* -------------------------------------------------------------- */}
+        {/* ROI calculator (S2) — the "play with it for minutes" moment      */}
+        {/* -------------------------------------------------------------- */}
+        <RoiCalculator />
 
         {/* -------------------------------------------------------------- */}
         {/* Which one do you need?                                          */}
