@@ -37,12 +37,12 @@ export function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl backdrop-saturate-150 transition-colors duration-300 ${
         scrolled
-          ? 'border-[#151a35]/[.08] bg-white/80 shadow-[0_8px_30px_rgba(21,26,53,.06)]'
-          : 'border-[#151a35]/[.05] bg-white/65'
+          ? 'border-[#151a35]/8 bg-white/80 shadow-[0_8px_30px_rgba(21,26,53,.06)]'
+          : 'border-[#151a35]/5 bg-white/65'
       }`}
     >
       {/* Logo stays left; the menu and CTA sit together on the right. */}
-      <div className="container-wide flex h-[92px] items-center justify-between">
+      <div className="container-wide flex h-23 items-center justify-between">
         <Logo size="lg" />
         <div className="hidden items-center gap-8 md:flex">
           <nav className="flex items-center gap-8">
@@ -71,8 +71,8 @@ export function Navbar() {
               ),
             )}
           </nav>
-          <Button href="#contact" variant="brand">
-            Book a Strategy Call <ArrowRight size={15} />
+          <Button href="/contact" variant="brand">
+            Contact <ArrowRight size={15} />
           </Button>
         </div>
         <button
@@ -157,8 +157,8 @@ export function Navbar() {
                 </a>
               ),
             )}
-            <Button href="#contact" variant="brand" className="mt-4 w-full">
-              Book a Strategy Call
+            <Button href="/contact" variant="brand" className="mt-4 w-full">
+              Contact
             </Button>
           </motion.nav>
         )}

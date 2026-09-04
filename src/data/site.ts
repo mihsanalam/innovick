@@ -2,7 +2,9 @@
  * Everything a non-developer is most likely to want to change lives here:
  * contact details, nav labels, and the social links.
  */
-import { Instagram, Linkedin, Twitter, type LucideIcon } from 'lucide-react';
+import type { ComponentType } from 'react';
+import { Instagram, Linkedin, Twitter } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/common/WhatsAppIcon';
 
 // TODO: replace the placeholder email with the real one.
 export const contact = {
@@ -38,21 +40,35 @@ export const navLinks: [string, string][] = [
   ['Contact', '/contact'],
 ];
 
-/** Kept deliberately short — the footer is a sign-off, not a sitemap. */
+/**
+ * The footer's page links — real routes, so they resolve from anywhere on the
+ * site (the old `#anchor` entries only worked on the homepage).
+ */
 export const footerLinks: [string, string][] = [
-  ['Services', '#services'],
-  ['Work', '#work'],
-  ['Founder', '#founder'],
-  ['Reviews', '#reviews'],
-  ['FAQs', '#faqs'],
+  ['Services', '/services'],
+  ['Success', '/success'],
+  ['About', '/about'],
+  ['Contact', '/contact'],
 ];
 
-// TODO: point these at the real Innovick profiles.
-// `icon` is a lucide-react component — swap it if you change the network.
-export const socialLinks: { label: string; href: string; icon: LucideIcon }[] = [
+/**
+ * Lucide icons and the custom WhatsApp SVG component both fit this shape,
+ * so the socials list can mix them freely.
+ */
+export type SocialIcon = ComponentType<{
+  size?: number;
+  strokeWidth?: number;
+  className?: string;
+}>;
+
+// TODO: point LinkedIn / Instagram / Twitter at the real Innovick profiles.
+// `icon` is a lucide-react component (or an SVG component with the same props)
+// — swap it if you change the network. WhatsApp uses the real site number.
+export const socialLinks: { label: string; href: string; icon: SocialIcon }[] = [
   { label: 'LinkedIn', href: 'https://linkedin.com', icon: Linkedin },
   { label: 'Instagram', href: 'https://instagram.com', icon: Instagram },
   { label: 'Twitter', href: 'https://x.com', icon: Twitter },
+  { label: 'WhatsApp', href: contact.whatsapp, icon: WhatsAppIcon },
 ];
 
 /**
