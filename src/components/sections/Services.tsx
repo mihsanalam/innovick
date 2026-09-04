@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link } from 'wouter';
 import { ArrowRight } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
@@ -172,7 +173,7 @@ export function Services() {
                       {String(i + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}
                     </span>
 
-                    <h3 className="mt-4 font-display text-[clamp(2rem,4.2vw,3.35rem)] font-semibold leading-[1] tracking-[-.055em] text-[#151a35]">
+                    <h3 className="mt-4 font-display text-[clamp(2rem,4.2vw,3.35rem)] font-semibold leading-none tracking-[-.055em] text-[#151a35]">
                       {lead && <>{lead} </>}
                       <span className="font-normal italic tracking-[-.02em]" style={{ fontFamily: serifAccent }}>
                         {last}
@@ -192,9 +193,10 @@ export function Services() {
                       ))}
                     </div>
 
-                    {/* One link, drawn as the reference's pill + circle pair. */}
-                    <a
-                      href="#contact"
+                    {/* One link, drawn as the reference's pill + circle pair.
+                        Routes to the service's own page (/services/:slug). */}
+                    <Link
+                      href={`/services/${service.slug}`}
                       className="group mt-9 inline-flex items-center gap-2.5"
                       data-testid={`link-service-${i}`}
                     >
@@ -207,7 +209,7 @@ export function Services() {
                       >
                         <ArrowRight size={17} className="transition-transform duration-300 group-hover:translate-x-0.5" />
                       </span>
-                    </a>
+                    </Link>
                   </div>
 
                   {/* Art column. Hidden below `lg` — a phone-width card is tall
@@ -232,13 +234,13 @@ export function Services() {
         </div>
 
         <Reveal>
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             className="mx-auto mt-14 flex w-fit items-center gap-2 rounded-full border border-[#cfabdb] bg-white px-5 py-3 text-sm font-bold text-[#8e31b5] transition hover:border-[#8e31b5] hover:bg-[#faf4fc]"
             data-testid="link-schedule-call"
           >
             Want to discuss? Let's Schedule a Call <ArrowRight size={15} />
-          </a>
+          </Link>
         </Reveal>
       </div>
     </section>

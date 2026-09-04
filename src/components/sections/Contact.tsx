@@ -8,9 +8,9 @@ import { contact } from '@/data/site';
 import { darkGrid, serifAccent } from '@/lib/theme';
 
 /**
- * Lifted out of the footer on purpose: every CTA on the page points at
- * `#contact`, and the footer itself is now a single thin sign-off row.
- * Edit the email / phone / WhatsApp values in `src/data/site.ts`.
+ * The dark end-of-page contact band. Every CTA here routes to the /contact
+ * page, where the actual booking flow lives. The phone/email row values come
+ * from `src/data/site.ts` (still placeholder — see the TODO there).
  */
 const contactRows = [
   { icon: Mail, label: 'EMAIL', value: contact.email, href: `mailto:${contact.email}` },
@@ -85,7 +85,7 @@ export function Contact() {
             One call, forty-five minutes, and a written plan you keep whether or not you hire us.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Button href={`mailto:${contact.email}`} variant="brand">
+            <Button href="/contact" variant="brand">
               Book a Strategy Call <ArrowRight size={15} />
             </Button>
             <a

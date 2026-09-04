@@ -134,8 +134,8 @@ export function Diagnose() {
             </AnimatePresence>
 
             <div className="mt-8 flex flex-wrap items-center gap-4 border-t border-white/10 pt-7">
-              <Button href="#contact" variant="white">
-                Get this on my real numbers <ArrowRight size={15} />
+              <Button href="/contact" variant="white">
+                Get this on my real number <ArrowRight size={15} />
               </Button>
               <span className="font-mono-custom text-[11px] text-white/30">One call. No deck.</span>
             </div>

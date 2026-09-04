@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Link } from 'wouter';
 import { useGSAP } from '@gsap/react';
 import { ArrowRight, Check } from 'lucide-react';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
@@ -8,6 +9,17 @@ import { PhoneMock } from '@/components/visuals/PhoneMock';
 import { SearchMock } from '@/components/visuals/SearchMock';
 import { capabilities, type CapabilityVisual } from '@/data/services';
 import { serifAccent } from '@/lib/theme';
+
+/**
+ * Capability → its own service page under /services. Titles map 1:1 onto the
+ * six services' slugs; anything unmapped falls back to the /services index.
+ */
+const capabilitySlug: Record<string, string> = {
+  'Strategic Marketing': 'strategic-marketing',
+  'Eye-Catching Design': 'creative-design',
+  'Web Development': 'web-development',
+  'Robust SEO': 'seo',
+};
 
 /** Keeps the data file JSX-free — the mock is chosen here instead. */
 function Visual({ kind }: { kind: CapabilityVisual }) {
@@ -56,7 +68,7 @@ export function Capabilities() {
         <div className="mt-16 grid gap-10 lg:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] lg:gap-20">
           {/* The rail — pinned in place, only the open entry changes */}
           <div className="hidden lg:block">
-            <div className="sticky top-[116px]">
+            <div className="sticky top-29">
               {capabilities.map((item, i) => {
                 const open = active === i;
                 return (
@@ -66,7 +78,7 @@ export function Capabilities() {
                       className="block w-full py-4 text-left"
                       data-testid={`button-capability-${i}`}
                     >
-                      <span className={`font-display text-2xl font-semibold tracking-[-.05em] transition-colors duration-500 ${open ? 'text-[#151a35]' : 'text-[#b3b7c6]'}`}>
+                      <span className={`font-display text-2xl font-semibold tracking-tighter transition-colors duration-500 ${open ? 'text-[#151a35]' : 'text-[#b3b7c6]'}`}>
                         {item.title}
                       </span>
                     </button>
@@ -82,9 +94,13 @@ export function Capabilities() {
                             </li>
                           ))}
                         </ul>
-                        <a href="#contact" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#151a35] transition hover:gap-3" data-testid={`link-capability-${i}`}>
+                        <Link
+                          href={capabilitySlug[item.title] ? `/services/${capabilitySlug[item.title]}` : '/services'}
+                          className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#151a35] transition hover:gap-3"
+                          data-testid={`link-capability-${i}`}
+                        >
                           Explore this service <ArrowRight size={15} />
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -99,10 +115,10 @@ export function Capabilities() {
               <div key={item.title} id={`cap-${i}`} className="cap-panel pb-10 lg:pb-24">
                 <div className="mb-6 lg:hidden">
                   <span className="font-mono-custom text-xs font-bold text-[#8e31b5]">0{i + 1}</span>
-                  <h3 className="mt-2 font-display text-3xl font-semibold tracking-[-.05em] text-[#151a35]">{item.title}</h3>
+                  <h3 className="mt-2 font-display text-3xl font-semibold tracking-tighter text-[#151a35]">{item.title}</h3>
                   <p className="mt-3 leading-7 text-[#5c6178]">{item.blurb}</p>
                 </div>
-                <div className="flex min-h-[380px] items-center justify-center rounded-[2rem] border border-[#eceef5] bg-[#f5f6fa] p-6 md:min-h-[440px] md:p-12">
+                <div className="flex min-h-95 items-center justify-center rounded-4xl border border-[#eceef5] bg-[#f5f6fa] p-6 md:min-h-110 md:p-12">
                   <div className="w-full"><Visual kind={item.visual} /></div>
                 </div>
               </div>

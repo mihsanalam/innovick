@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Link } from 'wouter';
 import { ArrowRight, Plus } from 'lucide-react';
 import { gsap, prefersReducedMotion } from '@/lib/gsap';
 import { Reveal } from '@/components/common/Reveal';
@@ -45,9 +46,9 @@ export function FAQ() {
           <p className="mt-6 max-w-xs leading-7 text-[#5c6178]">
             Still curious? Bring the question to a strategy call. We’ll bring the useful answer.
           </p>
-          <a href="#contact" className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#8e31b5]" data-testid="link-faq-contact">
+          <Link href="/contact" className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#8e31b5]" data-testid="link-faq-contact">
             Ask us directly <ArrowRight size={15} />
-          </a>
+          </Link>
         </Reveal>
 
         <div className="faq-list min-w-0">
@@ -64,7 +65,7 @@ export function FAQ() {
               >
                 {/* `min-w-0` lets the question shrink past its longest word, so the
                     `shrink-0` circle beside it can never be pushed off the edge. */}
-                <span className="min-w-0 break-words font-display text-lg font-semibold tracking-[-.03em] text-[#151a35]">{question}</span>
+                <span className="min-w-0 wrap-break-words font-display text-lg font-semibold tracking-[-.03em] text-[#151a35]">{question}</span>
                 <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#d8dbe6] text-[#8e31b5] transition-transform duration-300 ${active === i ? 'rotate-45' : ''}`}>
                   <Plus size={17} />
                 </span>
