@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, MessageCircle } from 'lucide-react';
 import { gsap, prefersReducedMotion } from '@/lib/gsap';
 import { Button } from '@/components/common/Button';
-import { socialLinks } from '@/data/site';
+import { contact, socialLinks } from '@/data/site';
 import { serifAccent } from '@/lib/theme';
 
 /**
@@ -48,7 +48,7 @@ export function Hero() {
     <section
       ref={heroRef}
       id="top"
-      className="relative isolate flex min-h-[88svh] items-center bg-white px-5 pb-16 pt-[calc(92px+3rem)] md:pb-20 lg:min-h-[92svh]"
+      className="relative isolate flex min-h-[88svh] items-center bg-white px-5 pb-16 pt-35 md:pb-20 lg:min-h-[92svh]"
     >
       <div className="container-wide grid w-full items-center gap-12 lg:grid-cols-[minmax(0,46fr)_minmax(0,54fr)] lg:gap-16 xl:gap-20">
 
@@ -67,7 +67,7 @@ export function Hero() {
 
           {/* Two fixed lines — no unpredictable re-wrapping. Each word keeps its
               own span so the entrance can still stagger them. */}
-          <h1 className="hero-title mt-6 font-display text-[clamp(2.2rem,5vw,4.5rem)] font-semibold leading-[1.04] tracking-[-.05em] text-[#151a35]">
+          <h1 className="hero-title mt-6 font-display text-[clamp(2.2rem,5vw,4.5rem)] font-semibold leading-[1.04] tracking-tighter text-[#151a35]">
             <span className="block">
               <span className="hero-word inline-block">Dominate</span>{' '}
               <span className="hero-word inline-block">Your</span>
@@ -84,17 +84,17 @@ export function Hero() {
             </span>
           </h1>
 
-          <p className="hero-rise mt-5 max-w-[34rem] text-[17px] leading-8 text-[#5c6178]">
+          <p className="hero-rise mt-5 max-w-136 text-[17px] leading-8 text-[#5c6178]">
             We turn messy growth challenges into measurable wins through marketing, creative,
             development, and automation that moves at the speed of your ambition.
           </p>
 
           <div className="hero-rise mt-7 flex flex-col gap-3.5 sm:flex-row">
-            <Button href="#contact" variant="brand" className="px-7 py-4 text-[15px]">
+            <Button href="/contact" variant="brand" className="px-7 py-4 text-[15px]">
               Book a Strategy Call <ArrowRight size={16} />
             </Button>
-            <Button href="#work" variant="outline" className="px-7 py-4 text-[15px]">
-              View Our Work
+            <Button href={contact.whatsapp} variant="outline" newTab className="px-7 py-4 text-[15px]">
+              <MessageCircle size={16} /> WhatsApp Us
             </Button>
           </div>
 
@@ -109,7 +109,7 @@ export function Hero() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={label}
-                  className="grid h-9 w-9 place-items-center rounded-full border border-[#151a35]/12 text-[#5c6178] transition-colors duration-300 hover:border-[#8e31b5]/50 hover:bg-[#8e31b5]/[.06] hover:text-[#8e31b5]"
+                  className="grid h-9 w-9 place-items-center rounded-full border border-[#151a35]/12 text-[#5c6178] transition-colors duration-300 hover:border-[#8e31b5]/50 hover:bg-[#8e31b5]/6 hover:text-[#8e31b5]"
                   data-testid={`link-hero-${label.toLowerCase()}`}
                 >
                   <Icon size={16} strokeWidth={1.9} />
@@ -128,7 +128,7 @@ export function Hero() {
             shadow). Hover lift only on genuine fine-pointer devices.
         ---------------------------------------------------------------- */}
         <div className="hero-photo group relative">
-          <div className="overflow-hidden rounded-[2rem] border border-[#e6e8f0] bg-[#eef0f6] shadow-[0_30px_80px_-30px_rgba(21,26,53,.32)] transition-shadow duration-500 [@media(hover:hover)_and_(pointer:fine)]:group-hover:shadow-[0_42px_90px_-32px_rgba(21,26,53,.40)]">
+          <div className="overflow-hidden rounded-4xl border border-[#e6e8f0] bg-[#eef0f6] shadow-[0_30px_80px_-30px_rgba(21,26,53,.32)] transition-shadow duration-500 [@media(hover:hover)_and_(pointer:fine)]:group-hover:shadow-[0_42px_90px_-32px_rgba(21,26,53,.40)]">
             <img
               src="/team-hero.jpg"
               alt="The Innovick marketing team collaborating around a table in a bright studio"
@@ -136,7 +136,7 @@ export function Hero() {
               loading="eager"
               fetchPriority="high"
               decoding="async"
-              className="aspect-[4/3] w-full object-cover transition-[filter,transform] duration-[400ms] ease-out [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.025] [@media(hover:hover)_and_(pointer:fine)]:group-hover:brightness-[1.04]"
+              className="aspect-4/3 w-full object-cover transition-[filter,transform] duration-400 ease-out [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.025] [@media(hover:hover)_and_(pointer:fine)]:group-hover:brightness-[1.04]"
             />
           </div>
         </div>

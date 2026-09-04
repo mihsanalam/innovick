@@ -4,12 +4,12 @@
  */
 import { Instagram, Linkedin, Twitter, type LucideIcon } from 'lucide-react';
 
-// TODO: replace the placeholder email, phone, and WhatsApp number with the real ones.
+// TODO: replace the placeholder email with the real one.
 export const contact = {
   email: 'hello@innovick.com',
-  phoneLabel: '+880 1000 000000',
-  phoneHref: 'tel:+8801000000000',
-  whatsapp: 'https://wa.me/8801000000000',
+  phoneLabel: '+880 1796-118651',
+  phoneHref: 'tel:+8801796118651',
+  whatsapp: 'https://wa.me/8801796118651',
   location: 'Dhaka, Bangladesh',
 } as const;
 

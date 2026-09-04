@@ -8,6 +8,7 @@ import Home from '@/pages/Home';
 import Contact from '@/pages/Contact';
 import NotFound from '@/pages/not-found';
 import { SmoothScroll } from '@/components/layout/SmoothScroll';
+import { WhatsAppBubble } from '@/components/layout/WhatsAppBubble';
 import { scrollToTopY } from '@/lib/scroll';
 
 /**
@@ -60,6 +61,7 @@ function Router() {
     <ErrorBoundary resetKey={useLocation()[0]}>
       <ScrollToTop />
       <SmoothScroll />
+      <WhatsAppBubble />
       {/* Suspense covers the lazy service routes while their chunk loads. */}
       <Suspense fallback={<RouteFallback />}>
         <Switch>

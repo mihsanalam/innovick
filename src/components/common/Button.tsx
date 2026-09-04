@@ -26,6 +26,7 @@ export function Button({
   outline = false,
   variant,
   className = '',
+  newTab = false,
 }: {
   children: ReactNode;
   href?: string;
@@ -33,6 +34,8 @@ export function Button({
   outline?: boolean;
   variant?: ButtonVariant;
   className?: string;
+  /** Opens the link in a new tab — used for off-site destinations (wa.me, cal.com). */
+  newTab?: boolean;
 }) {
   const kind: ButtonVariant = variant ?? (outline ? 'outline' : 'brand');
   const classes = `inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition-transform duration-300 hover:scale-[1.03] ${buttonStyles[kind]} ${className}`;
@@ -62,6 +65,7 @@ export function Button({
         className={classes}
         style={style}
         data-testid={testId}
+        {...(newTab ? { target: '_blank', rel: 'noreferrer' } : {})}
       >
         {children}
       </a>
